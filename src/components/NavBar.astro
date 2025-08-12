@@ -1,0 +1,101 @@
+---
+export interface Props {
+	activePage?: string;
+}
+
+const { activePage } = Astro.props;
+
+const navItems = [
+	{ name: "Inicio", href: "/" },
+	{ name: "Proyectos", href: "/proyectos" },
+	{ name: "Blog", href: "/blog" },
+	{ name: "Contacto", href: "/contacto" },
+];
+---
+
+<nav
+	id="navbar"
+	class="fixed top-0 left-0 w-full z-50
+         bg-transparent text-white
+         transition-all duration-300 ease-in-out"
+>
+	<div class="max-w-7xl mx-auto px-4">
+		<div class="flex items-center justify-between h-16">
+			<!-- Logo -->
+			<a href="/" class="flex items-center space-x-6">
+				<img src="/logo.png" alt="Logo" class="h-20 w-auto" />
+			</a>
+
+			<!-- Desktop links -->
+			<div class="hidden md:flex space-x-6">
+				{
+					navItems.map((item) => (
+						<a
+							href={item.href}
+							class={`px-3 py-2 rounded-md text-sm font-medium
+                    ${item.href === activePage ? "bg-white/20" : ""}
+                    hover:bg-white/10 transition`}
+						>
+							{item.name}
+						</a>
+					))
+				}
+			</div>
+
+			<!-- Mobile button (unchanged) -->
+			<button id="mobile-menu-toggle" class="md:hidden p-2">
+				<svg
+					class="h-6 w-6"
+					fill="none"
+					stroke="currentColor"
+					viewBox="0 0 24 24"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M4 6h16M4 12h16M4 18h16"></path>
+				</svg>
+			</button>
+		</div>
+	</div>
+</nav>
+
+<!-- Mobile Menu Toggle Script -->
+<script>
+	const button = document.getElementById(
+		"mobile-menu-toggle",
+	) as HTMLButtonElement;
+	const menu = document.getElementById("mobile-menu");
+
+	if (button && menu) {
+		button.addEventListener("click", () => {
+			const expanded = button.getAttribute("aria-expanded") === "true";
+			button.setAttribute("aria-expanded", String(!expanded));
+			menu.classList.toggle("hidden");
+		});
+
+		// Cierra el menú si se hace clic fuera
+		document.addEventListener("click", (e) => {
+			const target = e.target as HTMLElement;
+			if (!button.contains(target) && !menu.contains(target)) {
+				menu.classList.add("hidden");
+				button.setAttribute("aria-expanded", "false");
+			}
+		});
+	}
+
+	const nav = document.getElementById("navbar") as HTMLElement;
+
+	const onScroll = () => {
+		if (window.scrollY > 40) {
+			nav.classList.remove("bg-transparent");
+			nav.classList.add('bg-[#2E0967]/60', 'backdrop-blur-[41.67px]');
+		} else {
+			nav.classList.add("bg-transparent");
+			nav.classList.remove('bg-[#2E0967]/60', 'backdrop-blur-[41.67px]');
+		}
+	};
+
+	window.addEventListener("scroll", onScroll, { passive: true });
+</script>

@@ -1,11 +1,133 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Inicio"
+	description="Bienvenido a mi sitio Astro con Tailwind"
+	activePage="/"
+>
+	<!-- Hero Section -->
+	<section
+		class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-purple-700"
+	>
+		<!-- Video de fondo optimizado -->
+		<video
+			id="hero-video"
+			autoplay
+			muted
+			loop
+			playsinline
+			preload="metadata"
+			class="absolute inset-0 w-full h-full object-cover z-10"
+		>
+			<!-- WebM para escritorio (2.1MB - mejor calidad) -->
+			<source
+				src="/ondas-fondo.webm"
+				type="video/webm"
+				media="(min-width: 768px)"
+			/>
+			<!-- WebM para móvil (381KB - súper ligero) -->
+			<source
+				src="/ondas-fondo-mobile.webm"
+				type="video/webm"
+				media="(max-width: 767px)"
+			/>
+			<!-- MP4 fallback (872KB - compatible) -->
+			<source src="/ondas-fondo.mp4" type="video/mp4" />
+		</video>
+
+		<!-- Overlay sutil para mejorar contraste del texto -->
+		<div class="absolute inset-0 bg-black/25 backdrop-blur-[0.5px] z-20">
+		</div>
+
+		<!-- Contenido principal -->
+		<div class="relative z-30 text-center px-4 py-20 max-w-6xl mx-auto">
+			<h1
+				class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight"
+			>
+				<span class="drop-shadow-2xl">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit
+				</span>
+			</h1>
+
+			<p
+				class="text-xl sm:text-2xl text-white mb-12 opacity-95 drop-shadow-lg font-light"
+			>
+				3, 4, 5 octubre | Madrid
+			</p>
+
+			<button
+				class="bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[120px]"
+			>
+				CTA
+			</button>
+		</div>
+	</section>
 </Layout>
+
+<script>
+	// Optimizaciones de rendimiento para el video
+	const video = document.getElementById("hero-video") as HTMLVideoElement;
+
+	if (video) {
+		// Pausar video cuando la pestaña no está activa (ahorro de batería)
+		document.addEventListener("visibilitychange", () => {
+			if (document.hidden) {
+				video.pause();
+			} else if (video.paused) {
+				video.play().catch(() => {
+					console.log("Autoplay bloqueado por el navegador");
+				});
+			}
+		});
+
+		// Detectar conexión lenta y ocultar video si es necesario
+		if ("connection" in navigator) {
+			const connection = (navigator as any).connection;
+			if (
+				connection &&
+				(connection.effectiveType === "2g" || connection.saveData)
+			) {
+				video.style.display = "none";
+			}
+		}
+
+		// Asegurar reproducción al cargar
+		video.addEventListener("loadedmetadata", () => {
+			video.play().catch(() => {
+				console.log("Autoplay bloqueado por el navegador");
+			});
+		});
+
+		// Reducir calidad en dispositivos de baja potencia
+		if (
+			"deviceMemory" in navigator &&
+			(navigator as any).deviceMemory < 4
+		) {
+			video.style.display = "none";
+		}
+	}
+</script>
+
+<style>
+	/* Solo estilos que no se pueden hacer con Tailwind */
+	@media (prefers-reduced-motion: reduce) {
+		button {
+			transition: none !important;
+		}
+
+		button:hover {
+			transform: none !important;
+		}
+	}
+
+	/* Mejor sombra para texto en video */
+	h1 span {
+		text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+	}
+
+	p {
+		text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+	}
+</style>
