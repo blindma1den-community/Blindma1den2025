@@ -1,0 +1,57 @@
+<!-- Hero Section -->
+	<section
+		class="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-purple-700" id="hero"
+	>
+		<!-- Video de fondo optimizado -->
+		<video
+			id="hero-video"
+			autoplay
+			muted
+			loop
+			playsinline
+			preload="metadata"
+			class="absolute inset-0 w-full h-full object-cover z-10"
+		>
+			<!-- WebM para escritorio (2.1MB - mejor calidad) -->
+			<source
+				src="/ondas-fondo.webm"
+				type="video/webm"
+				media="(min-width: 768px)"
+			/>
+			<!-- WebM para móvil (381KB - súper ligero) -->
+			<source
+				src="/ondas-fondo-mobile.webm"
+				type="video/webm"
+				media="(max-width: 767px)"
+			/>
+			<!-- MP4 fallback (872KB - compatible) -->
+			<source src="/ondas-fondo.mp4" type="video/mp4" />
+		</video>
+
+		<!-- Overlay sutil para mejorar contraste del texto -->
+		<div class="absolute inset-0 bg-black/25 backdrop-blur-[0.5px] z-20">
+		</div>
+
+		<!-- Contenido principal -->
+		<div class="relative z-30 text-center px-4 py-20 max-w-6xl mx-auto">
+			<h1
+				class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight"
+			>
+				<span class="drop-shadow-2xl">
+					Lorem ipsum dolor sit amet, consectetur adipiscing elit
+				</span>
+			</h1>
+
+			<p
+				class="text-xl sm:text-2xl text-white mb-12 opacity-95 drop-shadow-lg font-light"
+			>
+				3, 4, 5 octubre | Madrid
+			</p>
+
+			<button
+				class="bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[120px]"
+			>
+				CTA
+			</button>
+		</div>
+	</section>

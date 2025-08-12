@@ -6,10 +6,12 @@ export interface Props {
 const { activePage } = Astro.props;
 
 const navItems = [
-	{ name: "Inicio", href: "/" },
-	{ name: "Proyectos", href: "/proyectos" },
-	{ name: "Blog", href: "/blog" },
-	{ name: "Contacto", href: "/contacto" },
+	{ name: "Inicio", href: "#" },
+	{ name: "Evento", href: "#evento" },
+	{ name: "Actividades", href: "#actividades" },
+	{ name: "Sponsors", href: "#sponsors" },
+	{ name: "FAQ", href: "#faq" },
+	{ name: "Contacto", href: "#contacto" },
 ];
 ---
 
@@ -90,10 +92,10 @@ const navItems = [
 	const onScroll = () => {
 		if (window.scrollY > 40) {
 			nav.classList.remove("bg-transparent");
-			nav.classList.add('bg-[#2E0967]/60', 'backdrop-blur-[41.67px]');
+			nav.classList.add("bg-[#2E0967]/60", "backdrop-blur-[41.67px]");
 		} else {
 			nav.classList.add("bg-transparent");
-			nav.classList.remove('bg-[#2E0967]/60', 'backdrop-blur-[41.67px]');
+			nav.classList.remove("bg-[#2E0967]/60", "backdrop-blur-[41.67px]");
 		}
 	};
 

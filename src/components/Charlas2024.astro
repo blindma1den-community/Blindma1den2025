@@ -1,0 +1,235 @@
+---
+import YouTubeVideo from './YouTubeVideo.astro';
+import charlasData from '../data/charlas2024.json';
+
+interface Talk {
+  id: number;
+  title: string;
+  videoId: string;
+  thumbnail: string;
+  description: string;
+}
+
+const talks: Talk[] = charlasData;
+---
+
+<section id="charlas2024" class="py-16 px-4 relative">
+  <!-- Overlay with color burn blend mode -->
+  <div class="absolute inset-0 bg-black/40" style="mix-blend-mode: color-burn;"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <h2 class="text-center text-5xl font-bold mb-16 bg-gradient-to-r from-white to-[#A412BA] bg-clip-text text-transparent">
+      Charlas 2024
+    </h2>
+    
+    <!-- Carousel container -->
+    <div class="relative overflow-hidden">
+      <div id="carousel" class="flex gap-6 pb-4 transition-transform duration-500 ease-in-out">
+        <!-- Duplicate videos for infinite scroll -->
+        {talks.map((talk, index) => (
+          <div class="flex-none w-80">
+            <YouTubeVideo 
+              videoId={talk.videoId}
+              title={talk.title}
+              thumbnail={talk.thumbnail}
+            />
+          </div>
+        ))}
+        {talks.map((talk, index) => (
+          <div class="flex-none w-80">
+            <YouTubeVideo 
+              videoId={talk.videoId}
+              title={talk.title}
+              thumbnail={talk.thumbnail}
+            />
+          </div>
+        ))}
+      </div>
+      
+      <!-- Navigation arrows -->
+      <button 
+        id="prevBtn" 
+        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 backdrop-blur-sm"
+        aria-label="Previous videos"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+        </svg>
+      </button>
+      
+      <button 
+        id="nextBtn" 
+        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 backdrop-blur-sm"
+        aria-label="Next videos"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+        </svg>
+      </button>
+    </div>
+    
+    <!-- Dots indicator -->
+    <div class="flex justify-center mt-8 gap-2">
+      {talks.map((_, index) => (
+        <button 
+          class="dot w-3 h-3 rounded-full bg-gray-600 hover:bg-[#A412BA] transition-all duration-300"
+          data-slide={index}
+          aria-label={`Go to slide ${index + 1}`}
+        />
+      ))}
+    </div>
+  </div>
+
+  <!-- Blindma1den Hack & Code 2025 Section -->
+  <div class="max-w-7xl mx-auto mt-16 px-4 relative z-10">
+    <div class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/50 hover:border-cyan-400/70 transition-all duration-300">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <!-- Image -->
+        <div class="relative">
+          <img 
+            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop" 
+            alt="Blindma1den Hack & Code 2025"
+            class="w-full h-64 object-cover rounded-lg"
+            loading="lazy"
+          />
+          <div class="absolute bottom-4 right-4 bg-cyan-400 text-black px-3 py-1 rounded text-sm font-medium">
+            1312 x 503
+          </div>
+        </div>
+        
+        <!-- Content -->
+        <div class="space-y-6">
+          <h3 class="text-3xl font-bold text-white">
+            Blindma1den Hack & Code 2025
+          </h3>
+          
+          <div class="space-y-4 text-gray-300">
+            <p class="leading-relaxed">
+              Pellentesque Sagittis Commodo Eu. A Interdum Nunc Accumsan Et. 
+              Donec Elit Velit, Molestae Quis Leo At, Consequat Cursus Est. 
+              Aliquam Iaculis. Et Lorem Sed Ultrices.
+            </p>
+            
+            <p class="leading-relaxed">
+              Phasellus Commodo Tortor Quis Lorem Posuere Dignissim.
+            </p>
+          </div>
+          
+          <button class="bg-[#A412BA] hover:bg-[#8B0FA3] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1">
+            CTA
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const carousel = document.getElementById('carousel');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const dots = document.querySelectorAll('.dot');
+    
+    if (!carousel || !prevBtn || !nextBtn) return;
+    
+    const slideWidth = 320; // Width of one video + gap (80 * 4 + 24)
+    const totalSlides = dots.length;
+    let currentSlide = 0;
+    let isTransitioning = false;
+    
+    // Set initial position (start from first duplicate set)
+    carousel.style.transform = `translateX(0px)`;
+    
+    function updateDots() {
+      dots.forEach((dot, index) => {
+        const actualIndex = currentSlide % totalSlides;
+        if (index === actualIndex) {
+          dot.classList.remove('bg-gray-600');
+          dot.classList.add('bg-[#A412BA]');
+        } else {
+          dot.classList.remove('bg-[#A412BA]');
+          dot.classList.add('bg-gray-600');
+        }
+      });
+    }
+    
+    function goToSlide(slideIndex) {
+      if (isTransitioning) return;
+      
+      isTransitioning = true;
+      currentSlide = slideIndex;
+      
+      const translateX = -currentSlide * slideWidth;
+      carousel.style.transform = `translateX(${translateX}px)`;
+      
+      updateDots();
+      
+      // Handle infinite loop
+      setTimeout(() => {
+        if (currentSlide >= totalSlides) {
+          // Reset to beginning without transition
+          carousel.style.transition = 'none';
+          currentSlide = 0;
+          carousel.style.transform = `translateX(0px)`;
+          
+          // Re-enable transition
+          setTimeout(() => {
+            carousel.style.transition = 'transform 0.5s ease-in-out';
+            isTransitioning = false;
+          }, 50);
+        } else if (currentSlide < 0) {
+          // Reset to end without transition  
+          carousel.style.transition = 'none';
+          currentSlide = totalSlides - 1;
+          carousel.style.transform = `translateX(${-currentSlide * slideWidth}px)`;
+          
+          // Re-enable transition
+          setTimeout(() => {
+            carousel.style.transition = 'transform 0.5s ease-in-out';
+            isTransitioning = false;
+          }, 50);
+        } else {
+          isTransitioning = false;
+        }
+        updateDots();
+      }, 500);
+    }
+    
+    // Previous button
+    prevBtn.addEventListener('click', () => {
+      goToSlide(currentSlide - 1);
+    });
+    
+    // Next button  
+    nextBtn.addEventListener('click', () => {
+      goToSlide(currentSlide + 1);
+    });
+    
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        goToSlide(index);
+      });
+    });
+    
+    // Auto-scroll every 4 seconds
+    setInterval(() => {
+      goToSlide(currentSlide + 1);
+    }, 4000);
+    
+    // Initialize
+    updateDots();
+  });
+</script>
+
+<style>
+  /* Hide scrollbar for webkit browsers */
+  #carousel::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Smooth scrolling for better UX */
+  #carousel {
+    scroll-behavior: smooth;
+  }
+</style>
