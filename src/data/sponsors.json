@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Google",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+    "website": "https://google.com",
+    "tier": "platinum"
+  },
+  {
+    "id": 2,
+    "name": "Microsoft",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
+    "website": "https://microsoft.com", 
+    "tier": "platinum"
+  },
+  {
+    "id": 3,
+    "name": "MetaLB",
+    "logo": "https://metallb.universe.tf/images/logo/metallb-blue.png",
+    "website": "https://metallb.universe.tf",
+    "tier": "gold"
+  },
+  {
+    "id": 4,
+    "name": "LinkedIn",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png",
+    "website": "https://linkedin.com",
+    "tier": "gold"
+  },
+  {
+    "id": 5,
+    "name": "Instagram",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/9/95/Instagram_logo_2022.svg",
+    "website": "https://instagram.com",
+    "tier": "silver"
+  },
+  {
+    "id": 6,
+    "name": "Apple Pay",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/b/b0/Apple_Pay_logo.svg",
+    "website": "https://apple.com/apple-pay",
+    "tier": "silver"
+  },
+  {
+    "id": 7,
+    "name": "Amazon",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg",
+    "website": "https://amazon.com",
+    "tier": "silver"
+  },
+  {
+    "id": 8,
+    "name": "Google Cloud",
+    "logo": "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg",
+    "website": "https://cloud.google.com",
+    "tier": "bronze"
+  }
+]

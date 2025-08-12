@@ -1,0 +1,45 @@
+---
+import speakersData from '../data/speakers.json';
+
+interface Speaker {
+  id: number;
+  name: string;
+  title: string;
+  image: string;
+  bio: string;
+}
+
+const speakers: Speaker[] = speakersData;
+---
+
+<section id="speakers" class="py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-center text-5xl font-bold mb-16 bg-gradient-to-r from-white to-[#A412BA] bg-clip-text text-transparent leading-tight">
+      Speakers
+    </h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      {speakers.map((speaker) => (
+        <div class="bg-gray-800/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700/30 hover:border-[#A412BA]/50 transition-all duration-300 hover:transform hover:scale-105">
+          <div class="aspect-square relative overflow-hidden">
+            <img 
+              src={speaker.image} 
+              alt={speaker.name}
+              class="w-full h-full object-cover"
+              loading="lazy"
+            />
+          </div>
+          
+          <div class="p-4">
+            <h3 class="text-[#A412BA] text-sm font-medium mb-1">
+              {speaker.name}
+            </h3>
+            <p class="text-white text-sm leading-relaxed">
+              {speaker.title}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

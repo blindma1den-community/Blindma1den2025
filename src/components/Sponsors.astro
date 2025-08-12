@@ -1,0 +1,104 @@
+---
+import sponsorsData from '../data/sponsors.json';
+
+interface Sponsor {
+  id: number;
+  name: string;
+  logo: string;
+  website: string;
+  tier: string;
+}
+
+const sponsors: Sponsor[] = sponsorsData;
+---
+
+<section id="sponsors" class="py-16 px-4 bg-black/20 backdrop-blur-sm relative overflow-hidden">  
+  <!-- Overlay for better contrast -->
+  <div class="absolute inset-0 bg-black/30 z-5"></div>
+  <div class="max-w-7xl mx-auto relative z-10">
+    <h2 class="text-center text-5xl font-bold mb-16 bg-gradient-to-r from-white to-[#A412BA] bg-clip-text text-transparent leading-tight">
+      Sponsors
+    </h2>
+    
+    <!-- Scrolling sponsors container -->
+    <div class="relative overflow-hidden">
+      <!-- Gradient overlays for smooth edges -->
+      <div class="absolute left-0 top-0 w-32 h-full bg-gradient-to-r from-black/20 to-transparent z-10 pointer-events-none"></div>
+      <div class="absolute right-0 top-0 w-32 h-full bg-gradient-to-l from-black/20 to-transparent z-10 pointer-events-none"></div>
+      
+      <!-- Scrolling animation container -->
+      <div class="flex gap-12 animate-scroll">
+        <!-- First set of sponsors -->
+        {sponsors.map((sponsor) => (
+          <div class="flex-none">
+            <a 
+              href={sponsor.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block transition-all duration-300 hover:scale-110 hover:brightness-125"
+              title={sponsor.name}
+            >
+              <img 
+                src={sponsor.logo}
+                alt={sponsor.name}
+                class="h-12 w-auto object-contain filter brightness-75 hover:brightness-100 transition-all duration-300"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        ))}
+        
+        <!-- Duplicate set for seamless loop -->
+        {sponsors.map((sponsor) => (
+          <div class="flex-none">
+            <a 
+              href={sponsor.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block transition-all duration-300 hover:scale-110 hover:brightness-125"
+              title={sponsor.name}
+            >
+              <img 
+                src={sponsor.logo}
+                alt={sponsor.name}
+                class="h-12 w-auto object-contain filter brightness-75 hover:brightness-100 transition-all duration-300"
+                loading="lazy"
+              />
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  
+  .animate-scroll {
+    animation: scroll 30s linear infinite;
+    width: calc(200% + 12rem); /* Account for gaps */
+  }
+  
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .animate-scroll {
+      animation-duration: 20s;
+    }
+    
+    img {
+      height: 2rem;
+    }
+  }
+</style>

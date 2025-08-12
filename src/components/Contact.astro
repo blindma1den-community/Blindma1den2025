@@ -1,0 +1,159 @@
+---
+---
+
+<section id="contacto" class="py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-cyan-400/70">
+      <!-- Title -->
+      <h2 class="text-center text-5xl font-bold mb-12 bg-gradient-to-r from-white to-[#A412BA] bg-clip-text text-transparent leading-tight">
+        Contáctanos
+      </h2>
+      
+      <!-- Contact Form -->
+      <div class="max-w-2xl mx-auto">
+        <form id="contactForm" class="space-y-6">
+        <!-- Email Field -->
+        <div class="form-group">
+          <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
+            email
+          </label>
+          <input 
+            type="email" 
+            id="email" 
+            name="email"
+            required
+            class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+            placeholder="tu@email.com"
+          />
+        </div>
+        
+        <!-- Name Field -->
+        <div class="form-group">
+          <label for="nombre" class="block text-sm font-medium text-gray-300 mb-2">
+            Nombre y Apellido
+          </label>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre"
+            required
+            class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
+            placeholder="Tu nombre completo"
+          />
+        </div>
+        
+        <!-- Message Field -->
+        <div class="form-group">
+          <label for="mensaje" class="block text-sm font-medium text-gray-300 mb-2">
+            Mensaje
+          </label>
+          <textarea 
+            id="mensaje" 
+            name="mensaje"
+            rows="6"
+            required
+            class="w-full px-4 py-3 bg-transparent border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 resize-none"
+            placeholder="Escribe tu mensaje aquí..."
+          ></textarea>
+        </div>
+        
+        <!-- Submit Button -->
+        <button 
+          type="submit"
+          class="w-full bg-[#A412BA] hover:bg-[#8B0FA3] text-white py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1 active:translate-y-0"
+        >
+          Enviar mensaje
+        </button>
+        </form>
+        
+        <!-- Success/Error Messages -->
+        <div id="form-message" class="mt-6 p-4 rounded-lg hidden">
+          <p id="message-text"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('contactForm');
+    const messageDiv = document.getElementById('form-message');
+    const messageText = document.getElementById('message-text');
+    
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(form);
+        const email = formData.get('email');
+        const nombre = formData.get('nombre');
+        const mensaje = formData.get('mensaje');
+        
+        // Basic validation
+        if (!email || !nombre || !mensaje) {
+          showMessage('Por favor, completa todos los campos.', 'error');
+          return;
+        }
+        
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+          showMessage('Por favor, ingresa un email válido.', 'error');
+          return;
+        }
+        
+        // Simulate form submission
+        showMessage('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
+        form.reset();
+        
+        // In a real application, you would send the data to your backend
+        // fetch('/api/contact', {
+        //   method: 'POST',
+        //   body: formData
+        // });
+      });
+    }
+    
+    function showMessage(message, type) {
+      messageText.textContent = message;
+      messageDiv.className = `mt-6 p-4 rounded-lg ${
+        type === 'success' 
+          ? 'bg-green-500/20 border border-green-500/50 text-green-300' 
+          : 'bg-red-500/20 border border-red-500/50 text-red-300'
+      }`;
+      messageDiv.classList.remove('hidden');
+      
+      // Hide message after 5 seconds
+      setTimeout(() => {
+        messageDiv.classList.add('hidden');
+      }, 5000);
+    }
+  });
+</script>
+
+<style>
+  /* Custom focus styles for better accessibility */
+  .form-group input:focus,
+  .form-group textarea:focus {
+    box-shadow: 0 0 0 2px rgba(34, 211, 238, 0.2);
+  }
+  
+  /* Smooth transitions for form elements */
+  .form-group input,
+  .form-group textarea {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  /* Placeholder styling */
+  .form-group input::placeholder,
+  .form-group textarea::placeholder {
+    transition: opacity 0.3s ease;
+  }
+  
+  .form-group input:focus::placeholder,
+  .form-group textarea:focus::placeholder {
+    opacity: 0.7;
+  }
+</style>

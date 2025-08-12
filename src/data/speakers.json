@@ -1,0 +1,58 @@
+[
+  {
+    "id": 1,
+    "name": "Pepita Pérez",
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
+    "bio": "Expert in technology and innovation"
+  },
+  {
+    "id": 2,
+    "name": "Pablito Pérez", 
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
+    "bio": "Specialist in digital transformation"
+  },
+  {
+    "id": 3,
+    "name": "Pepita Perejil",
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit", 
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
+    "bio": "Data science and analytics expert"
+  },
+  {
+    "id": 4,
+    "name": "Pepita López",
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=faces", 
+    "bio": "UX/UI design specialist"
+  },
+  {
+    "id": 5,
+    "name": "Pepita Pérez",
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
+    "bio": "Software architecture expert"
+  },
+  {
+    "id": 6,
+    "name": "Pablito Pérez",
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
+    "bio": "Cloud computing specialist"
+  },
+  {
+    "id": 7,
+    "name": "Pepita Perejil", 
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
+    "bio": "Machine learning researcher"
+  },
+  {
+    "id": 8,
+    "name": "Pepita López",
+    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=faces",
+    "bio": "Cybersecurity expert"
+  }
+]

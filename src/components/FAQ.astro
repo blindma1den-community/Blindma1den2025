@@ -1,0 +1,115 @@
+---
+import faqData from '../data/faq.json';
+
+interface FAQItem {
+  id: number;
+  question: string;
+  answer: string;
+}
+
+const faqs: FAQItem[] = faqData;
+---
+
+<section id="faq" class="py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border-2 border-cyan-400/70">
+      <div class="grid lg:grid-cols-2 gap-8">
+        <!-- Left side - Title -->
+        <div class="flex items-center">
+          <h2 class="text-5xl font-bold bg-gradient-to-r from-white to-[#A412BA] bg-clip-text text-transparent leading-tight">
+            Frequently<br>
+            Asked<br>
+            Questions
+          </h2>
+        </div>
+        
+        <!-- Right side - FAQ Items -->
+        <div class="space-y-4">
+          {faqs.map((faq, index) => (
+            <div class="faq-item border-b border-gray-600/30 last:border-b-0">
+              <button 
+                class="faq-question w-full text-left py-4 flex justify-between items-center text-white hover:text-cyan-400 transition-colors duration-300"
+                data-faq-id={faq.id}
+                aria-expanded="false"
+              >
+                <span class="font-medium pr-4">{faq.question}</span>
+                <span class="faq-icon text-2xl transition-transform duration-300 flex-shrink-0">
+                  {index === 0 ? '−' : '+'}
+                </span>
+              </button>
+              
+              <div 
+                class={`faq-answer overflow-hidden transition-all duration-300 ease-in-out ${index === 0 ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'}`}
+                data-faq-answer={faq.id}
+              >
+                <div class="text-gray-300 leading-relaxed">
+                  {faq.answer}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const faqButtons = document.querySelectorAll('.faq-question');
+    
+    faqButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const faqId = this.getAttribute('data-faq-id');
+        const answer = document.querySelector(`[data-faq-answer="${faqId}"]`);
+        const icon = this.querySelector('.faq-icon');
+        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+        
+        // Close all other FAQ items
+        faqButtons.forEach(otherButton => {
+          if (otherButton !== button) {
+            const otherId = otherButton.getAttribute('data-faq-id');
+            const otherAnswer = document.querySelector(`[data-faq-answer="${otherId}"]`);
+            const otherIcon = otherButton.querySelector('.faq-icon');
+            
+            otherButton.setAttribute('aria-expanded', 'false');
+            otherAnswer.classList.remove('max-h-96', 'opacity-100', 'pb-4');
+            otherAnswer.classList.add('max-h-0', 'opacity-0');
+            otherIcon.textContent = '+';
+          }
+        });
+        
+        // Toggle current FAQ item
+        if (!isExpanded) {
+          // Open current item
+          button.setAttribute('aria-expanded', 'true');
+          answer.classList.remove('max-h-0', 'opacity-0');
+          answer.classList.add('max-h-96', 'opacity-100', 'pb-4');
+          icon.textContent = '−';
+        } else {
+          // Close current item
+          button.setAttribute('aria-expanded', 'false');
+          answer.classList.remove('max-h-96', 'opacity-100', 'pb-4');
+          answer.classList.add('max-h-0', 'opacity-0');
+          icon.textContent = '+';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  /* Smooth transitions for accordion */
+  .faq-answer {
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding-bottom 0.3s ease-in-out;
+  }
+  
+  .faq-icon {
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  /* Hover effects */
+  .faq-question:hover .faq-icon {
+    transform: scale(1.1);
+  }
+</style>

@@ -1,0 +1,73 @@
+---
+const year = new Date().getFullYear();
+---
+
+<footer class="text-white/90 text-center py-4 backdrop-blur-sm bg-black/20">
+    <div class="max-w-7xl mx-auto px-4 py-12">
+        <!-- Top row -->
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Brand -->
+            <div>
+                <h2 class="text-3xl font-bold mb-2">LoremIpsum</h2>
+                <p class="text-gray-300">Dolor Sit?</p>
+            </div>
+
+            <!-- Quick links -->
+            <div>
+                <h3 class="font-semibold mb-3 text-lg">LOREM</h3>
+                <nav class="space-y-1">
+                    <a
+                        href="#"
+                        class="block text-sm text-gray-300 hover:text-white transition"
+                        >TEXT 1</a
+                    >
+                    <a
+                        href="#"
+                        class="block text-sm text-gray-300 hover:text-white transition"
+                        >TEXT 2</a
+                    >
+                    <a
+                        href="#"
+                        class="block text-sm text-gray-300 hover:text-white transition"
+                        >TEXT 3</a
+                    >
+                    <a
+                        href="#"
+                        class="block text-sm text-gray-300 hover:text-white transition"
+                        >TEXT 4</a
+                    >
+                </nav>
+            </div>
+
+            <!-- CTA & Social -->
+            <div class="flex flex-col items-start md:items-end">
+                <h3 class="font-semibold mb-3 text-lg">Follow&nbsp;Us</h3>
+                <div class="flex space-x-4 mb-4">
+                    <!-- Iconos sociales (puedes reemplazar con SVG) -->
+                    <a
+                        href="#"
+                        class="text-gray-300 hover:text-white transition">X</a
+                    >
+                    <a
+                        href="#"
+                        class="text-gray-300 hover:text-white transition">回</a
+                    >
+                </div>
+                <button
+                    class="bg-white text-[#1B0123] px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition"
+                >
+                    CTA
+                </button>
+            </div>
+        </div>
+
+        <!-- Bottom line -->
+        <div
+            class="mt-10 pt-6 border-t border-white/20 text-center text-sm text-gray-400"
+        >
+            <p>
+                &copy; {year} Lorem ipsum dolor elit, sed do eiusmod tempor incididunt.
+            </p>
+        </div>
+    </div>
+</footer>

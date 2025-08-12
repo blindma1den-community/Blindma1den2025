@@ -1,11 +1,89 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Evento from "../components/Evento.astro";
+import Hero from "../components/Hero.astro";
+import Charlas2024 from "../components/Charlas2024.astro";
+import Sponsors from "../components/Sponsors.astro";
+import FAQ from "../components/FAQ.astro";
+import Contact from "../components/Contact.astro";
+import Layout from "../layouts/Layout.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	title="Inicio"
+	description="Bienvenido a mi sitio Astro con Tailwind"
+	activePage="/"
+>
+	<Hero />
+	<Evento />
+	<Charlas2024 />
+	<Sponsors />
+	<FAQ />
+	<Contact />
 </Layout>
+
+<script>
+	// Optimizaciones de rendimiento para el video
+	const video = document.getElementById("hero-video") as HTMLVideoElement;
+
+	if (video) {
+		// Pausar video cuando la pestaña no está activa (ahorro de batería)
+		document.addEventListener("visibilitychange", () => {
+			if (document.hidden) {
+				video.pause();
+			} else if (video.paused) {
+				video.play().catch(() => {
+					console.log("Autoplay bloqueado por el navegador");
+				});
+			}
+		});
+
+		// Detectar conexión lenta y ocultar video si es necesario
+		if ("connection" in navigator) {
+			const connection = (navigator as any).connection;
+			if (
+				connection &&
+				(connection.effectiveType === "2g" || connection.saveData)
+			) {
+				video.style.display = "none";
+			}
+		}
+
+		// Asegurar reproducción al cargar
+		video.addEventListener("loadedmetadata", () => {
+			video.play().catch(() => {
+				console.log("Autoplay bloqueado por el navegador");
+			});
+		});
+
+		// Reducir calidad en dispositivos de baja potencia
+		if (
+			"deviceMemory" in navigator &&
+			(navigator as any).deviceMemory < 4
+		) {
+			video.style.display = "none";
+		}
+	}
+</script>
+
+<style>
+	/* Solo estilos que no se pueden hacer con Tailwind */
+	@media (prefers-reduced-motion: reduce) {
+		button {
+			transition: none !important;
+		}
+
+		button:hover {
+			transform: none !important;
+		}
+	}
+
+	/* Mejor sombra para texto en video */
+	h1 span {
+		text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+	}
+
+	p {
+		text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+	}
+</style>
