@@ -1,5 +1,6 @@
 ---
 import speakersData from '../data/speakers.json';
+import SpeakerCard from './SpeakerCard.astro';
 
 interface Speaker {
   id: number;
@@ -7,6 +8,8 @@ interface Speaker {
   title: string;
   image: string;
   bio: string;
+  country: string;
+  twitter: string;
 }
 
 const speakers: Speaker[] = speakersData;
@@ -20,26 +23,52 @@ const speakers: Speaker[] = speakersData;
     
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       {speakers.map((speaker) => (
-        <div class="bg-gray-800/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700/30 hover:border-[#A412BA]/50 transition-all duration-300 hover:transform hover:scale-105">
-          <div class="aspect-square relative overflow-hidden">
-            <img 
-              src={speaker.image} 
-              alt={speaker.name}
-              class="w-full h-full object-cover"
-              loading="lazy"
-            />
+        <div>
+          <div 
+            class="bg-gray-800/30 backdrop-blur-sm rounded-lg overflow-hidden border border-gray-700/30 hover:border-[#A412BA]/50 transition-all duration-300 hover:transform hover:scale-105 cursor-pointer speaker-trigger h-full flex flex-col"
+            data-speaker-id={speaker.id}
+          >
+            <div class="aspect-square relative overflow-hidden">
+              <img 
+                src={speaker.image} 
+                alt={speaker.name}
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+            
+            <div class="p-4 flex-1 flex flex-col">
+              <h3 class="text-[#A412BA] text-sm font-medium mb-1">
+                {speaker.name}
+              </h3>
+              <p class="text-white text-sm leading-relaxed flex-1">
+                {speaker.title}
+              </p>
+            </div>
           </div>
           
-          <div class="p-4">
-            <h3 class="text-[#A412BA] text-sm font-medium mb-1">
-              {speaker.name}
-            </h3>
-            <p class="text-white text-sm leading-relaxed">
-              {speaker.title}
-            </p>
-          </div>
+          <SpeakerCard speaker={speaker} />
         </div>
       ))}
     </div>
   </div>
 </section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const triggers = document.querySelectorAll('.speaker-trigger');
+    
+    triggers.forEach(trigger => {
+      trigger.addEventListener('click', () => {
+        const speakerId = trigger.getAttribute('data-speaker-id');
+        const popup = document.querySelector(`#speaker-card-${speakerId}`);
+        
+        if (popup) {
+          popup.classList.remove('opacity-0', 'invisible');
+          popup.querySelector('.speaker-card')?.classList.remove('scale-95');
+          document.body.classList.add('overflow-hidden');
+        }
+      });
+    });
+  });
+</script>

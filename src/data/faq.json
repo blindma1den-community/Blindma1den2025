@@ -1,27 +1,27 @@
 [
   {
     "id": 1,
-    "question": "Quisque ac felis ipsum.?",
-    "answer": "Cras id scelerisque nisl. Pellentesque non risus consequat, info@test.com hendrerit neque in, lobortum lorem."
+    "question":"¿Necesito experiencia previa?",
+    "answer": "No. Lo único que necesitas es curiosidad y ganas de aprender."
   },
   {
     "id": 2,
-    "question": "Tristique non ipsum vitae?",
-    "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation."
+    "question":"¿Debo llevar algo especial?",
+    "answer": "Solo tu laptop. Nosotros ponemos el resto."
   },
   {
     "id": 3,
-    "question": "Maecenas enim velit?",
-    "answer": "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit."
+    "question": "¿Las conferencias tienen costo?",
+    "answer": "No, las conferencias son completamente gratuitas."
   },
   {
     "id": 4,
-    "question": "Vestibulum ornare arcu in mauris sodales?",
-    "answer": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident."
+    "question": "¿El CTF y el Hackathon tienen costo?",
+    "answer": "¿El CTF y el Hackathon tienen costo?"
   },
   {
     "id": 5,
-    "question": "Aenean sit amet libero nibh?",
-    "answer": "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error."
+    "question": "¿Puedo participar si no estoy en Madrid?",
+    "answer": "EClaro. El evento es híbrido: puedes unirte online desde cualquier lugar del mundo."
   }
 ]

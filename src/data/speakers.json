@@ -1,58 +1,101 @@
 [
   {
     "id": 1,
-    "name": "Pepita Pérez",
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
-    "bio": "Expert in technology and innovation"
+    "name": "Daniela Maissi",
+    "title": "Investigadora OWASP Foundation & Top Researcher 2023",
+    "image": "https://pbs.twimg.com/profile_images/1867712636223143936/mZ2xhrRv_400x400.jpg",
+    "bio": "Investigadora en la OWASP Foundation, la organización más grande del mundo dedicada a la seguridad web, distinguida como Top Researcher 2023 por su trabajo en soluciones contra el ransomware. Docente de la Maestría de Ciberseguridad de la Universidad Complutense de Madrid y creadora de 4Geeks Academy.",
+    "country": "Vzla/España",
+    "twitter": "blindma1den"
   },
   {
     "id": 2,
-    "name": "Pablito Pérez", 
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
-    "bio": "Specialist in digital transformation"
+    "name": "Gabriela Garcia",
+    "title": "Consultora de Ciberseguridad & Experta en Seguridad del Software",
+    "image": "https://pbs.twimg.com/profile_images/1883793198616600576/ibcu_cxq_400x400.jpg",
+    "bio": "Ingeniero Informático de la Universidad de Las Palmas de Gran Canaria, con más de 5 años de experiencia como Consultora de Ciberseguridad. Docente de la Maestría de Ciberseguridad de la Universidad Complutense de Madrid y Experta en Seguridad del Software.",
+    "country": "Cuba/España",
+    "twitter": ""
   },
   {
     "id": 3,
-    "name": "Pepita Perejil",
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit", 
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
-    "bio": "Data science and analytics expert"
+    "name": "Mario Álvarez",
+    "title": "Creador de 'El Pingüino de Mario' & Fundador de DockerLabs.es",
+    "image": "https://pbs.twimg.com/profile_images/1902129349664329728/a9flsbyS_400x400.jpg",
+    "bio": "Creador del canal de YouTube 'El Pingüino de Mario', donde imparte contenidos prácticos sobre programación, Linux y seguridad informática. Fundador de la academia 'El Rincón del Hacker' y de la plataforma DockerLabs.es, orientada a la práctica de hacking ético mediante laboratorios vulnerables en Docker.",
+    "country": "España",
+    "twitter": ""
   },
   {
     "id": 4,
-    "name": "Pepita López",
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
-    "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=faces", 
-    "bio": "UX/UI design specialist"
+    "name": "Ing. Juanita",
+    "title": "Especialista en Normas ISO & Consultora en Seguridad",
+    "image": "https://pbs.twimg.com/profile_images/1451222074639400964/KRk3ZQPj_400x400.jpg",
+    "bio": "Ha desempeñado cargos como Coordinadora Regional de Cumplimiento, Líder de Seguridad de la Información y Consultora en Seguridad. Se destaca por su conocimiento en normas internacionales como ISO 27001, ISO 31000, ISO 22301 e ISO 32032.",
+    "country": "Colombia",
+    "twitter": ""
   },
   {
     "id": 5,
-    "name": "Pepita Pérez",
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
-    "image": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces",
-    "bio": "Software architecture expert"
+    "name": "MargeLrZ",
+    "title": "Especialista en GRC & Fundadora de We Secure Community",
+    "image": "https://pbs.twimg.com/profile_images/1718695780528066560/vZ7yDpjz_400x400.jpg",
+    "bio": "Especialista en Gestión de la Ciberseguridad con experiencia en GRC, auditora interna certificada en ISO 27001. Fundadora de We Secure Community y líder en Womcy, ONG internacional de mujeres latinoamericanas en ciberseguridad. Compliance Officer en el sector asegurador.",
+    "country": "Vzla/Colombia",
+    "twitter": "margelrz"
   },
   {
     "id": 6,
-    "name": "Pablito Pérez",
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
-    "bio": "Cloud computing specialist"
+    "name": "Lenin Alevski",
+    "title": "Security Engineer en Google",
+    "image": "https://pbs.twimg.com/profile_images/1643737269738823680/bzMu37oL_400x400.jpg",
+    "bio": "Ingeniero de Software del Tecnológico de Monterrey con más de 10 años de experiencia en el mundo de la tecnología. Actualmente es Security Engineer de Google.",
+    "country": "México/USA",
+    "twitter": ""
   },
   {
     "id": 7,
-    "name": "Pepita Perejil", 
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
-    "image": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop&crop=faces",
-    "bio": "Machine learning researcher"
+    "name": "Antony G.",
+    "title": "Ingeniero Cloud & Especialista en Kubernetes",
+    "image": "https://pbs.twimg.com/profile_images/1818164382091644928/TwZppI6Y_400x400.jpg",
+    "bio": "Ingeniero cloud, formador y emprendedor caracterizado por su expertise técnica en Kubernetes, la nube y DevOps, especializado en herramientas de infraestructura como código como Terraform. Reside en Múnich, Alemania, desde hace más de una década.",
+    "country": "Vzla/Alemania",
+    "twitter": ""
   },
   {
     "id": 8,
-    "name": "Pepita López",
-    "title": "Lorem Ipsum Dolor Sit Amet, Consectetur Adipiscing Elit",
+    "name": "Jose Tovar",
+    "title": "Desarrollador FullStack & Arquitecto de Software",
+    "image": "https://pbs.twimg.com/profile_images/1818636630858543104/A8VwfNDU_400x400.jpg",
+    "bio": "Desarrollador de software con experiencia en desarrollo BackEnd, FullStack y FrontEnd. Domina varios lenguajes y tecnologías como PHP, JavaScript, Python, Java y MySQL. Radicado en Bogotá, Colombia, con experiencia en arquitectura y diseño de aplicaciones web.",
+    "country": "Vzla/Colombia",
+    "twitter": ""
+  },
+  {
+    "id": 9,
+    "name": "Sheyla Leacock",
+    "title": "Embajadora AWS & Máster en Ciberseguridad",
+    "image": "https://pbs.twimg.com/profile_images/1542699217843617793/0nSRvkVm_400x400.jpg",
+    "bio": "Licenciada en Desarrollo de Software y Máster en Dirección de Ciberseguridad, Hacking Ético y Seguridad Ofensiva. Embajadora de AWS, líder activa en Women of Security Panamá y embajadora de la Fundación Comunidad DOJO.",
+    "country": "Panamá",
+    "twitter": ""
+  },
+  {
+    "id": 10,
+    "name": "Nataya Flores",
+    "title": "Técnica Informática & Ingeniera de Datos",
+    "image": "https://pbs.twimg.com/profile_images/1791496611324936193/AxJivE4Q_400x400.jpg",
+    "bio": "Técnica informática e ingeniera de datos certificada desde 2022, complementa su formación actualizando conocimientos en bioinformática. Tiene un perfil activo en formación continua y divulgación tecnológica en la comunidad tecnológica de América Latina.",
+    "country": "Argentina",
+    "twitter": ""
+  },
+  {
+    "id": 11,
+    "name": "Erika Flores",
+    "title": "Full Stack Developer & Especialista en AWS",
     "image": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=faces",
-    "bio": "Cybersecurity expert"
+    "bio": "Full Stack Developer con más de 5 años de experiencia en React, NodeJS, MongoDB y AWS. Ha trabajado con equipos distribuidos globalmente, destacando en creación y despliegue de aplicaciones web, así como integración de APIs con servicios como WhatsApp, Twilio y Mapbox.",
+    "country": "México",
+    "twitter": ""
   }
 ]
