@@ -3,13 +3,13 @@
     "id": 1,
     "title": "Andrea Díaz Correia: Patrones de diseño",
     "videoId": "kZtAtLFizcg",
-    "thumbnail": "https://img.youtube.com/vi/kZtAtLFizcg/mqdefault.jpg"
+    "thumbnail": "https://img.youtube.com/vi/kZtAtLFizcg/maxresdefault.jpg"
   },
   {
     "id": 2,
     "title": "Gabriela García: Integración entre código y seguridad en el software Blindma1den",
-    "videoId": "cGnkfIIVfoo", 
-    "thumbnail": "https://img.youtube.com/vi/cGnkfIIVfoo/1.jpg"
+    "videoId": "cGnkfIIVfoo",
+    "thumbnail": "https://img.youtube.com/vi/cGnkfIIVfoo/maxresdefault.jpg"
   },
   {
     "id": 3,
@@ -19,23 +19,98 @@
   },
   {
     "id": 4,
-    "title": "Presentamos o iPhone 14 Pro | Apple",
-    "videoId": "dQw4w9WgXcQ",
-    "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
-    "description": "Características avanzadas del iPhone 14 Pro"
+    "title": "Lenin Alevski: Fundamentos de criptografía para developers",
+    "videoId": "okdBv8wRjxA",
+    "thumbnail": "https://img.youtube.com/vi/okdBv8wRjxA/maxresdefault.jpg"
   },
   {
     "id": 5,
-    "title": "Presentamos o iPhone 14 Pro | Apple",
-    "videoId": "dQw4w9WgXcQ",
-    "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
-    "description": "Características avanzadas del iPhone 14 Pro"
+    "title": "Fernando Herrera: Construyendo una aplicación con buenas prácticas",
+    "videoId": "mJaBOI_SV2M",
+    "thumbnail": "https://img.youtube.com/vi/mJaBOI_SV2M/maxresdefault.jpg"
   },
   {
     "id": 6,
-    "title": "Presentamos o iPhone 14 Pro | Apple",
-    "videoId": "dQw4w9WgXcQ",
-    "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
-    "description": "Características avanzadas del iPhone 14 Pro"
+    "title": "Daniel Hernández: Windows el sistema más inseguro del mundo... ¿O no?",
+    "videoId": "t_U7B64FSOs",
+    "thumbnail": "https://img.youtube.com/vi/t_U7B64FSOs/maxresdefault.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Marlyn Larez: Security by Design: La fórmula oculta para código infalible",
+    "videoId": "NKadYdWCclQ",
+    "thumbnail": "https://img.youtube.com/vi/NKadYdWCclQ/maxresdefault.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Carlos Azaustre: La evolución del frontend",
+    "videoId": "-88p_4ydVpQ",
+    "thumbnail": "https://img.youtube.com/vi/-88p_4ydVpQ/maxresdefault.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Carlos Laprovittera: ¿Cómo empezar tu carrera en ciberseguridad?",
+    "videoId": "pXY4T-HpnMY",
+    "thumbnail": "https://img.youtube.com/vi/pXY4T-HpnMY/sddefault.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Angie Matiz: Piensa antes de codear: fundamentos claves del desarrollo",
+    "videoId": "ypKdDNvH9sg",
+    "thumbnail": "https://img.youtube.com/vi/ypKdDNvH9sg/sddefault.jpg"
+  },
+  {
+    "id": 11,
+    "title": "Conversando con Héctor De León",
+    "videoId": "kQZhrLtMYxw",
+    "thumbnail": "https://img.youtube.com/vi/kQZhrLtMYxw/maxresdefault.jpg"
+  },
+  {
+    "id": 12,
+    "title": "Alejandro Sánchez: Skills de un programador para los próximos 10 años",
+    "videoId": "_qe-sCiuI14",
+    "thumbnail": "https://img.youtube.com/vi/_qe-sCiuI14/sddefault.jpg"
+  },
+  {
+    "id": 13,
+    "title": "Ing Juanita: Seguridad de la información desde la estrategia",
+    "videoId": "sGliFd78prQ",
+    "thumbnail": "https://img.youtube.com/vi/sGliFd78prQ/maxresdefault.jpg"
+  },
+  {
+    "id": 14,
+    "title": "Delfín Abzueta(@dabzueta): Defensa en profundidad en la nube",
+    "videoId": "3k85deUJEl8",
+    "thumbnail": "https://img.youtube.com/vi/3k85deUJEl8/sddefault.jpg"
+  },
+  {
+    "id": 15,
+    "title": "Tiziano Mass: 'Malware 101: Los fundamentos'",
+    "videoId": "w45FIcxy6Aw",
+    "thumbnail": "https://img.youtube.com/vi/w45FIcxy6Aw/sddefault.jpg"
+  },
+  {
+    "id": 16,
+    "title": "Conversando con Miguel Ángel Durán (midudev)",
+    "videoId": "9mEzllOvNEs",
+    "thumbnail": "https://img.youtube.com/vi/9mEzllOvNEs/maxresdefault.jpg"
+  },
+  {
+    "id": 17,
+    "title": "José A. Dos Ramos: 'Ciberseguridad y la Ingeniería Social: el Papel del Front-End'",
+    "videoId": "53OBQrpjYgw",
+    "thumbnail": "https://img.youtube.com/vi/53OBQrpjYgw/sddefault.jpg"
+  },
+  {
+    "id": 18,
+    "title": "Héctor De León: Lo que muchos olvidan del backend",
+    "videoId": "BCvxqGZBGk4",
+    "thumbnail": "https://img.youtube.com/vi/BCvxqGZBGk4/maxresdefault.jpg"
+  },
+  {
+    "id": 19,
+    "title": "Diana Martínez: Introducción al mundo de IOT",
+    "videoId": "y7vl6tsjleQ",
+    "thumbnail": "https://img.youtube.com/vi/y7vl6tsjleQ/maxresdefault.jpg"
   }
 ]
