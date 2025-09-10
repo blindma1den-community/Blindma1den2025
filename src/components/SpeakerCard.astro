@@ -1,0 +1,108 @@
+---
+interface Speaker {
+  id: number;
+  name: string;
+  title: string;
+  image: string;
+  bio: string;
+  country: string;
+  twitter: string;
+}
+
+interface Props {
+  speaker: Speaker;
+}
+
+const { speaker } = Astro.props;
+---
+
+<div 
+  id={`speaker-card-${speaker.id}`} 
+  class="speaker-popup fixed inset-0 bg-black/70 backdrop-blur-sm z-50 flex items-center justify-center p-4 opacity-0 invisible transition-all duration-300"
+>
+  <div class="speaker-card bg-gradient-to-br from-[#2E0967] via-[#3C1E5E] to-[#1B0123] rounded-3xl shadow-2xl max-w-md w-full mx-auto transform scale-95 transition-all duration-300 border border-[#A412BA]/30">
+    <div class="relative overflow-hidden rounded-t-3xl">
+      <div class="absolute top-4 right-4 z-10">
+        <button class="close-popup w-8 h-8 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-red-500/70 transition-colors">
+          ✕
+        </button>
+      </div>
+      
+      <div class="aspect-square relative">
+        <img 
+          src={speaker.image} 
+          alt={speaker.name}
+          class="w-full h-full object-cover"
+          loading="lazy"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[#2E0967]/60 to-transparent"></div>
+      </div>
+    </div>
+
+    <div class="p-6 space-y-4">
+      <div class="text-center border-b border-[#A412BA]/30 pb-4">
+        <h3 class="text-2xl font-bold text-white mb-2">
+          {speaker.name}
+        </h3>
+        <p class="text-[#A412BA] font-medium text-lg">
+          {speaker.title}
+        </p>
+        <p class="text-gray-300 text-sm mt-1 flex items-center justify-center gap-1">
+          <span class="text-lg">🌍</span>
+          {speaker.country}
+        </p>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <h4 class="text-white font-semibold mb-2 text-sm uppercase tracking-wide">Biografía</h4>
+          <p class="text-gray-300 text-sm leading-relaxed">
+            {speaker.bio}
+          </p>
+        </div>
+
+        {speaker.twitter && (
+          <div class="pt-3 border-t border-[#A412BA]/20">
+            <div class="flex items-center justify-center">
+              <a 
+                href={`https://x.com/${speaker.twitter}`} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-[#A412BA] to-[#753BE8] text-white font-medium rounded-full hover:from-[#753BE8] hover:to-[#A412BA] transition-all duration-300 transform hover:scale-105"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                @{speaker.twitter}
+              </a>
+            </div>
+          </div>
+        )}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script define:vars={{ speakerId: speaker.id }}>
+  document.addEventListener('DOMContentLoaded', () => {
+    const popup = document.querySelector(`#speaker-card-${speakerId}`);
+    if (!popup) return;
+
+    const closeBtn = popup.querySelector('.close-popup');
+    
+    const closePopup = () => {
+      popup.classList.add('opacity-0', 'invisible');
+      popup.querySelector('.speaker-card')?.classList.add('scale-95');
+      document.body.classList.remove('overflow-hidden');
+    };
+    
+    closeBtn?.addEventListener('click', closePopup);
+
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) {
+        closePopup();
+      }
+    });
+  });
+</script>

@@ -2,71 +2,58 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="text-white/90 text-center py-4 backdrop-blur-sm bg-black/20">
-    <div class="max-w-7xl mx-auto px-4 py-12">
+<footer class="text-white/90 text-center py-1 backdrop-blur-sm bg-black/20">
+    <div class="max-w-7xl mx-auto px-4 py-2">
         <!-- Top row -->
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid md:grid-cols-2 gap-2">
             <!-- Brand -->
-            <div>
-                <h2 class="text-3xl font-bold mb-2">LoremIpsum</h2>
-                <p class="text-gray-300">Dolor Sit?</p>
-            </div>
+            <a href="/" class="flex items-center space-x-6">
+				<img src="/logo.png" alt="Logo" class="h-16 w-auto" />
+			</a>
 
-            <!-- Quick links -->
-            <div>
-                <h3 class="font-semibold mb-3 text-lg">LOREM</h3>
-                <nav class="space-y-1">
-                    <a
-                        href="#"
-                        class="block text-sm text-gray-300 hover:text-white transition"
-                        >TEXT 1</a
-                    >
-                    <a
-                        href="#"
-                        class="block text-sm text-gray-300 hover:text-white transition"
-                        >TEXT 2</a
-                    >
-                    <a
-                        href="#"
-                        class="block text-sm text-gray-300 hover:text-white transition"
-                        >TEXT 3</a
-                    >
-                    <a
-                        href="#"
-                        class="block text-sm text-gray-300 hover:text-white transition"
-                        >TEXT 4</a
-                    >
-                </nav>
-            </div>
-
+            
             <!-- CTA & Social -->
             <div class="flex flex-col items-start md:items-end">
-                <h3 class="font-semibold mb-3 text-lg">Follow&nbsp;Us</h3>
-                <div class="flex space-x-4 mb-4">
+                <h3 class="font-semibold mb-1 text-base">Follow&nbsp;Us</h3>
+                <div class="flex space-x-4 mb-1">
                     <!-- Iconos sociales (puedes reemplazar con SVG) -->
                     <a
-                        href="#"
+                        href="https://x.com/Blindma1denHC"
+                        target="_blank"
                         class="text-gray-300 hover:text-white transition">X</a
                     >
                     <a
-                        href="#"
-                        class="text-gray-300 hover:text-white transition">回</a
-                    >
+                        href="https://www.youtube.com/@blindma1den"
+                        target="_blank"
+                        class="text-gray-300 hover:text-white transition">
+                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
                 </div>
-                <button
+                <!-- <button
                     class="bg-white text-[#1B0123] px-6 py-2 rounded-full font-semibold hover:bg-opacity-80 transition"
                 >
                     CTA
-                </button>
+                </button> -->
             </div>
         </div>
 
         <!-- Bottom line -->
         <div
-            class="mt-10 pt-6 border-t border-white/20 text-center text-sm text-gray-400"
+            class="mt-2 pt-2 border-t border-white/20 text-center text-xs text-gray-400"
         >
             <p>
-                &copy; {year} Lorem ipsum dolor elit, sed do eiusmod tempor incididunt.
+                Todos los derechos reservados Blindma1den Hack&Code &copy; {year} 
+            </p>
+        </div>
+
+        <!-- Developers -->
+        <div class="footer-developers container pt-1 text-center">
+            <p class="text-xs">Made with ❤️ by:
+                 <a href="https://x.com/guajilodev" target="_blank" class="text-blue-300 hover:text-white transition">@guajilodev</a>
+                 <a href="https://x.com/nhera_test" target="_blank" class="text-blue-300 hover:text-white transition">@nhera_test</a>
+                 <a href="https://x.com/margelrz" target="_blank" class="text-blue-300 hover:text-white transition">@margelrz</a>
             </p>
         </div>
     </div>
