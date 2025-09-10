@@ -1,41 +1,38 @@
 [
   {
     "id": 1,
-    "title": "Presentamos o iPhone 14 Pro | Apple",
-    "videoId": "dQw4w9WgXcQ",
-    "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    "description": "Conferencia sobre las nuevas características del iPhone 14 Pro"
+    "title": "Andrea Díaz Correia: Patrones de diseño",
+    "videoId": "kZtAtLFizcg",
+    "thumbnail": "https://img.youtube.com/vi/kZtAtLFizcg/mqdefault.jpg"
   },
   {
     "id": 2,
-    "title": "Presentamos o iPhone 14 Pro | Apple",
-    "videoId": "dQw4w9WgXcQ", 
-    "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    "description": "Análisis técnico del nuevo iPhone 14 Pro"
+    "title": "Gabriela García: Integración entre código y seguridad en el software Blindma1den",
+    "videoId": "cGnkfIIVfoo", 
+    "thumbnail": "https://img.youtube.com/vi/cGnkfIIVfoo/1.jpg"
   },
   {
     "id": 3,
-    "title": "Presentamos o iPhone 14 Pro | Apple",
-    "videoId": "dQw4w9WgXcQ",
-    "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
-    "description": "Características avanzadas del iPhone 14 Pro"
+    "title": "Nataya Flores: ¿Qué es Polars? ¿Se come?",
+    "videoId": "7zWkWRBUCt8",
+    "thumbnail": "https://img.youtube.com/vi/7zWkWRBUCt8/maxresdefault.jpg"
   },
   {
-    "id": 3,
+    "id": 4,
     "title": "Presentamos o iPhone 14 Pro | Apple",
     "videoId": "dQw4w9WgXcQ",
     "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
     "description": "Características avanzadas del iPhone 14 Pro"
   },
   {
-    "id": 3,
+    "id": 5,
     "title": "Presentamos o iPhone 14 Pro | Apple",
     "videoId": "dQw4w9WgXcQ",
     "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 
     "description": "Características avanzadas del iPhone 14 Pro"
   },
   {
-    "id": 3,
+    "id": 6,
     "title": "Presentamos o iPhone 14 Pro | Apple",
     "videoId": "dQw4w9WgXcQ",
     "thumbnail": "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", 

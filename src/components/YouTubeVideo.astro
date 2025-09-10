@@ -8,7 +8,7 @@ interface Props {
 const { videoId, title, thumbnail } = Astro.props;
 ---
 
-<div class="relative aspect-video bg-gray-800 rounded-lg overflow-hidden group cursor-pointer hover:transform hover:scale-105 transition-all duration-300">
+<div class="relative aspect-video bg-gray-800 rounded-lg overflow-hidden group cursor-pointer hover:transform hover:scale-105 transition-all duration-300" data-video-id={videoId}>
   <!-- Thumbnail -->
   <img 
     src={thumbnail || `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`}
@@ -34,15 +34,14 @@ const { videoId, title, thumbnail } = Astro.props;
   </div>
 </div>
 
-<script define:vars={{ videoId, title }}>
-  document.addEventListener('DOMContentLoaded', function() {
-    const videoElement = document.querySelector(`[data-video-id="${videoId}"]`);
+<script>
+  document.addEventListener('click', function(e) {
+    const videoElement = e.target.closest('[data-video-id]');
     if (videoElement) {
-      videoElement.addEventListener('click', function() {
-        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank');
-      });
+      const videoId = videoElement.getAttribute('data-video-id');
+      if (videoId) {
+        window.open(`https://www.youtube.com/watch?v=${videoId}`, '_blank', 'noopener,noreferrer');
+      }
     }
   });
 </script>
-
-<div data-video-id={videoId}></div>

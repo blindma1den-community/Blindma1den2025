@@ -1,0 +1,81 @@
+---
+// EventDescription component
+---
+
+<section id="event-description" class="py-16 px-4">
+  <div class="max-w-7xl mx-auto">
+    <div
+      class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/50 hover:border-cyan-400/70 transition-all duration-300"
+    >
+      <div class="text-center space-y-8">
+        <!-- Title -->
+        <h2 class="text-5xl font-bold text-white leading-tight">
+          🎯 No vengas a mirar. Ven a jugar.
+        </h2>
+
+        <!-- Content -->
+        <div class="space-y-6 text-gray-300 max-w-4xl mx-auto">
+          <p class="text-xl leading-relaxed">
+            <strong class="text-white">Blindma1den Hack&Code 2025</strong> no es una conferencia más.
+          </p>
+          
+          <p class="text-lg leading-relaxed">
+            Es <strong class="text-white">tres días de acción total</strong> para descubrir hasta dónde puede llevarte tu curiosidad:
+          </p>
+
+          <div class="grid md:grid-cols-3 gap-8 my-8">
+            <!-- Workshops -->
+            <div class="bg-gray-700/30 backdrop-blur-sm rounded-xl p-6 border border-purple-500/30 hover:border-purple-500/50 transition-all duration-300">
+              <div class="text-4xl mb-4">💻</div>
+              <p class="text-white font-semibold mb-2">Workshops prácticos</p>
+              <p class="text-sm text-gray-300">donde aprendes con las manos en el teclado.</p>
+            </div>
+
+            <!-- Charlas -->
+            <div class="bg-gray-700/30 backdrop-blur-sm rounded-xl p-6 border border-cyan-400/30 hover:border-cyan-400/50 transition-all duration-300">
+              <div class="text-4xl mb-4">🎤</div>
+              <p class="text-white font-semibold mb-2">Charlas con expertos</p>
+              <p class="text-sm text-gray-300">que inspiran y comparten lo que viven en el campo real.</p>
+            </div>
+
+            <!-- CTF + Hackathon -->
+            <div class="bg-gray-700/30 backdrop-blur-sm rounded-xl p-6 border border-pink-500/30 hover:border-pink-500/50 transition-all duration-300">
+              <div class="text-4xl mb-4">🏆</div>
+              <p class="text-white font-semibold mb-2">CTF + Hackathon</p>
+              <p class="text-sm text-gray-300">con narrativa cyberpunk diseñados para ponerte a prueba.</p>
+            </div>
+          </div>
+
+          <p class="text-lg leading-relaxed text-white font-medium">
+            Aquí no importa tu experiencia, lo que importa son tus <strong class="text-[#753BE8]">ganas de crecer</strong> y conectarte con la comunidad.
+          </p>
+        </div>
+
+        <!-- CTA Button -->
+        <div class="mt-8">
+          <a
+            href="/registro"
+            class="inline-block bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[120px] text-center"
+          >
+            🔥 Quiero vivir la experiencia
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Animaciones para las tarjetas */
+  @media (hover: hover) {
+    .bg-gray-700\/30:hover {
+      transform: translateY(-2px);
+    }
+  }
+  
+  @media (prefers-reduced-motion: reduce) {
+    .bg-gray-700\/30:hover {
+      transform: none;
+    }
+  }
+</style>

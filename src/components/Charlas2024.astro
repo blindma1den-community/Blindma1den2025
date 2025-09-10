@@ -7,106 +7,19 @@ interface Talk {
   title: string;
   videoId: string;
   thumbnail: string;
-  description: string;
 }
 
 const talks: Talk[] = charlasData;
 ---
 
-<section id="charlas2024" class="py-16 px-4 relative">
-  <!-- Overlay with color burn blend mode -->
-  <div class="absolute inset-0 bg-black/40" style="mix-blend-mode: color-burn;">
-  </div>
-  <div class="max-w-7xl mx-auto relative z-10">
+<section id="charlas2024" class="py-16 px-4">
+  <div class="max-w-7xl mx-auto">
     <h2
       class="text-center text-5xl font-bold mb-16 bg-gradient-to-r from-white to-[#A412BA] bg-clip-text text-transparent leading-tight"
     >
       Recap 2024
     </h2>
 
-    <!-- Carousel container -->
-    <div class="relative overflow-hidden">
-      <div
-        id="carousel"
-        class="flex gap-6 pb-4 transition-transform duration-500 ease-in-out"
-      >
-        <!-- Duplicate videos for infinite scroll -->
-        {
-          talks.map((talk, index) => (
-            <div class="flex-none w-80">
-              <YouTubeVideo
-                videoId={talk.videoId}
-                title={talk.title}
-                thumbnail={talk.thumbnail}
-              />
-            </div>
-          ))
-        }
-        {
-          talks.map((talk, index) => (
-            <div class="flex-none w-80">
-              <YouTubeVideo
-                videoId={talk.videoId}
-                title={talk.title}
-                thumbnail={talk.thumbnail}
-              />
-            </div>
-          ))
-        }
-      </div>
-
-      <!-- Navigation arrows -->
-      <button
-        id="prevBtn"
-        class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 backdrop-blur-sm"
-        aria-label="Previous videos"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M15 19l-7-7 7-7"></path>
-        </svg>
-      </button>
-
-      <button
-        id="nextBtn"
-        class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 backdrop-blur-sm"
-        aria-label="Next videos"
-      >
-        <svg
-          class="w-6 h-6"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M9 5l7 7-7 7"></path>
-        </svg>
-      </button>
-    </div>
-
-    <!-- Dots indicator -->
-    <div class="flex justify-center mt-8 gap-2">
-      {
-        talks.map((_, index) => (
-          <button
-            class="dot w-3 h-3 rounded-full bg-gray-600 hover:bg-[#A412BA] transition-all duration-300"
-            data-slide={index}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))
-      }
-    </div>
   </div>
 
   <!-- Blindma1den Hack & Code 2025 Section -->
@@ -114,54 +27,130 @@ const talks: Talk[] = charlasData;
     <div
       class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/50 hover:border-cyan-400/70 transition-all duration-300"
     >
-      <div class="grid md:grid-cols-2 gap-8 items-center">
-        <!-- Image -->
-        <div class="relative">
-          <img
-            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&h=400&fit=crop"
-            alt="Blindma1den Hack & Code 2025"
-            class="w-full h-64 object-cover rounded-lg"
-            loading="lazy"
-          />
-          <div
-            class="absolute bottom-4 right-4 bg-cyan-400 text-black px-3 py-1 rounded text-sm font-medium"
-          >
-            1312 x 503
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <!-- Carousel -->
+        <div class="space-y-4 order-1 lg:order-1">
+          <div class="relative overflow-hidden w-full">
+            <div
+              id="carousel-section"
+              class="flex pb-4 transition-transform duration-500 ease-in-out"
+            >
+              <!-- Duplicate videos for infinite scroll -->
+              {
+                talks.map((talk, index) => (
+                  <div class="flex-none w-full">
+                    <YouTubeVideo
+                      videoId={talk.videoId}
+                      title={talk.title}
+                      thumbnail={talk.thumbnail}
+                    />
+                  </div>
+                ))
+              }
+              {
+                talks.map((talk, index) => (
+                  <div class="flex-none w-full">
+                    <YouTubeVideo
+                      videoId={talk.videoId}
+                      title={talk.title}
+                      thumbnail={talk.thumbnail}
+                    />
+                  </div>
+                ))
+              }
+            </div>
+
+            <!-- Navigation arrows -->
+            <button
+              id="prevBtn-section"
+              class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 backdrop-blur-sm"
+              aria-label="Previous videos"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"></path>
+              </svg>
+            </button>
+
+            <button
+              id="nextBtn-section"
+              class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white rounded-full p-2 transition-all duration-300 backdrop-blur-sm"
+              aria-label="Next videos"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Dots indicator -->
+          <div class="flex justify-center gap-2">
+            {
+              talks.map((_, index) => (
+                <button
+                  class="dot-section w-3 h-3 rounded-full bg-gray-600 hover:bg-[#A412BA] transition-all duration-300"
+                  data-slide={index}
+                  aria-label={`Go to slide ${index + 1}`}
+                />
+              ))
+            }
           </div>
         </div>
 
         <!-- Content -->
-        <div class="space-y-6">
+        <div class="space-y-6 order-2 lg:order-2">
           <h3 class="text-3xl font-bold text-white">
             💡 Así vivimos Blindma1den Hack&Code 2024
           </h3>
 
           <div class="space-y-4 text-gray-300">
             <p class="leading-relaxed">
-              El año pasado, más de 420 personas de toda Latinoamérica se
-              conectaron para vivir 3 días de charlas, workshops y un CTF
-              virtual inolvidable. 🌎✨
+              El año pasado, más de <strong>420 personas de toda Latinoamérica</strong> se conectaron para vivir 5 días de charlas, workshops y un CTF virtual inolvidable. 🌎✨
+            </p>
+            
+            <p class="leading-relaxed">
+              Este 2025 lo transformamos:
             </p>
             <p class="leading-relaxed">
-              Este 2025 lo transformamos: 👉 Podrás inscribirte para vivir la
-              experiencia online desde cualquier lugar del mundo. 👉 O unirte de
-              forma presencial en Madrid, en La Nave, donde la comunidad cobrará
-              vida.
+              👉 Podrás inscribirte para vivir la experiencia <strong>online</strong> desde cualquier lugar del mundo.
+            </p>
+            <p class="leading-relaxed">
+              👉 O unirte de forma <strong>presencial en Madrid</strong>, en La Nave, donde la comunidad cobrará vida.
             </p>
 
             <p class="leading-relaxed">
-              🎤 Las conferencias seguirán siendo gratuitas para todos. 🔥 Pero
-              si quieres vivir la verdadera adrenalina, el CTF + Hackathon es tu
-              boleto de entrada al reto.
+              🎤 Las conferencias seguirán siendo <strong>gratuitas</strong> para todos.
+            </p>
+            <p class="leading-relaxed">
+              🔥 Pero si quieres vivir la verdadera adrenalina, el <strong>CTF + Hackathon</strong> es tu boleto de entrada al reto.
             </p>
           </div>
 
-          <button
-            class="bg-[#A412BA] hover:bg-[#8B0FA3] text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-1"
-          >
-            🚀 Sí, quiero ser parte este 2025
-          </button>
-        </div>
+          <!-- <div class="flex justify-center">
+            <a
+              href="/registro"
+              class="inline-block bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[120px] text-center"
+            >
+              🚀 Sí, quiero ser parte este 2025
+            </a>
+          </div> -->
       </div>
     </div>
   </div>
@@ -169,14 +158,14 @@ const talks: Talk[] = charlasData;
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const carousel = document.getElementById("carousel");
-    const prevBtn = document.getElementById("prevBtn");
-    const nextBtn = document.getElementById("nextBtn");
-    const dots = document.querySelectorAll(".dot");
+    const carousel = document.getElementById("carousel-section");
+    const prevBtn = document.getElementById("prevBtn-section");
+    const nextBtn = document.getElementById("nextBtn-section");
+    const dots = document.querySelectorAll(".dot-section");
 
     if (!carousel || !prevBtn || !nextBtn) return;
 
-    const slideWidth = 320; // Width of one video + gap (80 * 4 + 24)
+    const slideWidth = carousel.offsetWidth; // Width of the carousel container
     const totalSlides = dots.length;
     let currentSlide = 0;
     let isTransitioning = false;
@@ -197,7 +186,7 @@ const talks: Talk[] = charlasData;
       });
     }
 
-    function goToSlide(slideIndex) {
+    function goToSlide(slideIndex: number) {
       if (isTransitioning) return;
 
       isTransitioning = true;
@@ -268,12 +257,12 @@ const talks: Talk[] = charlasData;
 
 <style>
   /* Hide scrollbar for webkit browsers */
-  #carousel::-webkit-scrollbar {
+  #carousel-section::-webkit-scrollbar {
     display: none;
   }
 
   /* Smooth scrolling for better UX */
-  #carousel {
+  #carousel-section {
     scroll-behavior: smooth;
   }
 </style>
