@@ -22,6 +22,10 @@ import Layout from "../layouts/Layout.astro";
           </p>
 
           <form id="registration-form" class="space-y-4">
+            <!-- CSRF Protection -->
+            <input type="hidden" id="csrf_token" name="csrf_token" value="" />
+            <input type="hidden" id="session_id" name="session_id" value="" />
+            
             <!-- Row 1: Nombre y Apellido -->
             <div class="grid md:grid-cols-2 gap-4">
               <div>
@@ -31,6 +35,7 @@ import Layout from "../layouts/Layout.astro";
                   id="nombre"
                   name="nombre"
                   required
+                  maxlength="50"
                   class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
                   placeholder="Tu nombre"
                 />
@@ -43,6 +48,7 @@ import Layout from "../layouts/Layout.astro";
                   id="apellido"
                   name="apellido"
                   required
+                  maxlength="50"
                   class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
                   placeholder="Tu apellido"
                 />
@@ -60,6 +66,8 @@ import Layout from "../layouts/Layout.astro";
                     id="username_x"
                     name="username_x"
                     required
+                    maxlength="30"
+                    pattern="[a-zA-Z0-9_-]+"
                     class="w-full pl-8 pr-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
                     placeholder="tu_usuario"
                   />
@@ -73,6 +81,7 @@ import Layout from "../layouts/Layout.astro";
                   id="email"
                   name="email"
                   required
+                  maxlength="254"
                   class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
                   placeholder="tu@email.com"
                 />
@@ -103,6 +112,7 @@ import Layout from "../layouts/Layout.astro";
                   id="pais"
                   name="pais"
                   required
+                  maxlength="50"
                   class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
                   placeholder="Tu país"
                 />
@@ -117,6 +127,7 @@ import Layout from "../layouts/Layout.astro";
                   type="text"
                   id="nombre_equipo"
                   name="nombre_equipo"
+                  maxlength="50"
                   class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
                   placeholder="Nombre de tu equipo (opcional)"
                 />
@@ -178,39 +189,114 @@ import Layout from "../layouts/Layout.astro";
 </Layout>
 
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
+  document.addEventListener("DOMContentLoaded", async function () {
     const form = document.getElementById("registration-form") as HTMLFormElement;
     const messageDiv = document.getElementById("form-message");
     const messageText = document.getElementById("message-text");
+    const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
+
+    // Initialize CSRF protection
+    await initializeCSRF();
 
     if (form) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
         
-        // Get form data
-        const formData = new FormData(form);
-        const data = {
-          nombre: formData.get("nombre") as string,
-          apellido: formData.get("apellido") as string,
-          username_x: formData.get("username_x") as string,
-          email: formData.get("email") as string,
-          modalidad: formData.get("modalidad") as string,
-          nombre_equipo: formData.get("nombre_equipo") as string,
-          num_integrantes: formData.get("num_integrantes") as string,
-          pais: formData.get("pais") as string,
-        };
+        // Disable submit button to prevent double submission
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Enviando...';
+        }
 
         try {
-          // Here you would typically send to your backend
-          // For now, we'll simulate a successful submission
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          // Get form data
+          const formData = new FormData(form);
           
-          showMessage("¡Registro exitoso! Te contactaremos pronto con más información.", "success");
-          form.reset();
+          // Basic client-side validation
+          const nombre = formData.get("nombre") as string;
+          const apellido = formData.get("apellido") as string;
+          const username_x = formData.get("username_x") as string;
+          const email = formData.get("email") as string;
+          const modalidad = formData.get("modalidad") as string;
+          const pais = formData.get("pais") as string;
+          const num_integrantes = formData.get("num_integrantes") as string;
+
+          // Basic validation
+          if (!nombre || !apellido || !username_x || !email || !modalidad || !pais || !num_integrantes) {
+            showMessage('Por favor, completa todos los campos requeridos.', 'error');
+            return;
+          }
+
+          // Email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            showMessage('Por favor, ingresa un email válido.', 'error');
+            return;
+          }
+
+          // Username validation
+          const usernameRegex = /^[a-zA-Z0-9_-]+$/;
+          if (!usernameRegex.test(username_x) || username_x.length < 3 || username_x.length > 30) {
+            showMessage('Username debe tener entre 3-30 caracteres y solo contener letras, números, guiones y guiones bajos.', 'error');
+            return;
+          }
+
+          // Team members validation
+          const numMembers = parseInt(num_integrantes);
+          if (isNaN(numMembers) || numMembers < 1 || numMembers > 3) {
+            showMessage('Número de integrantes debe ser entre 1 y 3.', 'error');
+            return;
+          }
+
+          // Team name validation for multi-member teams
+          const nombre_equipo = formData.get("nombre_equipo") as string;
+          if (numMembers > 1 && (!nombre_equipo || nombre_equipo.trim() === '')) {
+            showMessage('Nombre del equipo es requerido para equipos de más de 1 integrante.', 'error');
+            return;
+          }
+
+          // Submit to secure API endpoint
+          const response = await fetch('/api/registro', {
+            method: 'POST',
+            body: formData
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            showMessage(result.message, 'success');
+            form.reset();
+            // Regenerate CSRF token for next submission
+            await initializeCSRF();
+          } else {
+            showMessage(result.error || 'Error al procesar el registro.', 'error');
+          }
+
         } catch (error) {
-          showMessage("Hubo un error al enviar el formulario. Por favor, intenta de nuevo.", "error");
+          console.error('Registration form error:', error);
+          showMessage('Error de conexión. Intenta de nuevo más tarde.', 'error');
+        } finally {
+          // Re-enable submit button
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Enviar';
+          }
         }
       });
+    }
+
+    async function initializeCSRF() {
+      try {
+        const response = await fetch('/api/csrf-token');
+        const data = await response.json();
+        
+        if (data.success) {
+          (document.getElementById('csrf_token') as HTMLInputElement).value = data.data.csrf_token;
+          (document.getElementById('session_id') as HTMLInputElement).value = data.data.session_id;
+        }
+      } catch (error) {
+        console.error('CSRF token initialization error:', error);
+      }
     }
 
     function showMessage(message: string, type: string) {

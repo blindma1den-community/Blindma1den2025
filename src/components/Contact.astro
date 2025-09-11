@@ -12,6 +12,10 @@
       <!-- Contact Form -->
       <div class="max-w-2xl mx-auto">
         <form id="contactForm" class="space-y-6">
+        <!-- CSRF Protection -->
+        <input type="hidden" id="csrf_token" name="csrf_token" value="" />
+        <input type="hidden" id="session_id" name="session_id" value="" />
+        
         <!-- Email Field -->
         <div class="form-group">
           <label for="email" class="block text-sm font-medium text-gray-300 mb-2">
@@ -22,6 +26,7 @@
             id="email" 
             name="email"
             required
+            maxlength="254"
             class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
             placeholder="tu@email.com"
           />
@@ -37,6 +42,7 @@
             id="nombre" 
             name="nombre"
             required
+            maxlength="100"
             class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
             placeholder="Tu nombre completo"
           />
@@ -52,6 +58,7 @@
             name="mensaje"
             rows="6"
             required
+            maxlength="1000"
             class="w-full px-4 py-3 bg-transparent border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 resize-none"
             placeholder="Escribe tu mensaje aquí..."
           ></textarea>
@@ -78,59 +85,116 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', function() {
+  document.addEventListener('DOMContentLoaded', async function() {
     const form = document.getElementById('contactForm');
     const messageDiv = document.getElementById('form-message');
     const messageText = document.getElementById('message-text');
+    const submitButton = form?.querySelector('button[type="submit"]');
+    
+    // Initialize CSRF protection
+    await initializeCSRF();
     
     if (form) {
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
-        // Get form data
-        const formData = new FormData(form);
-        const email = formData.get('email');
-        const nombre = formData.get('nombre');
-        const mensaje = formData.get('mensaje');
-        
-        // Basic validation
-        if (!email || !nombre || !mensaje) {
-          showMessage('Por favor, completa todos los campos.', 'error');
-          return;
+        // Disable submit button to prevent double submission
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Enviando...';
         }
         
-        // Email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(email)) {
-          showMessage('Por favor, ingresa un email válido.', 'error');
-          return;
+        try {
+          // Get form data
+          const formData = new FormData(form);
+          
+          // Basic client-side validation
+          const email = formData.get('email');
+          const nombre = formData.get('nombre');
+          const mensaje = formData.get('mensaje');
+          
+          if (!email || !nombre || !mensaje) {
+            showMessage('Por favor, completa todos los campos.', 'error');
+            return;
+          }
+          
+          // Email validation
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            showMessage('Por favor, ingresa un email válido.', 'error');
+            return;
+          }
+          
+          // Length validation
+          if (nombre.length < 2 || nombre.length > 100) {
+            showMessage('El nombre debe tener entre 2 y 100 caracteres.', 'error');
+            return;
+          }
+          
+          if (mensaje.length < 10 || mensaje.length > 1000) {
+            showMessage('El mensaje debe tener entre 10 y 1000 caracteres.', 'error');
+            return;
+          }
+          
+          // Submit to secure API endpoint
+          const response = await fetch('/api/contact', {
+            method: 'POST',
+            body: formData
+          });
+          
+          const result = await response.json();
+          
+          if (result.success) {
+            showMessage(result.message, 'success');
+            form.reset();
+            // Regenerate CSRF token for next submission
+            await initializeCSRF();
+          } else {
+            showMessage(result.error || 'Error al enviar el mensaje.', 'error');
+          }
+          
+        } catch (error) {
+          console.error('Contact form error:', error);
+          showMessage('Error de conexión. Intenta de nuevo más tarde.', 'error');
+        } finally {
+          // Re-enable submit button
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Enviar mensaje';
+          }
         }
-        
-        // Simulate form submission
-        showMessage('¡Mensaje enviado correctamente! Te contactaremos pronto.', 'success');
-        form.reset();
-        
-        // In a real application, you would send the data to your backend
-        // fetch('/api/contact', {
-        //   method: 'POST',
-        //   body: formData
-        // });
       });
     }
     
+    async function initializeCSRF() {
+      try {
+        const response = await fetch('/api/csrf-token');
+        const data = await response.json();
+        
+        if (data.success) {
+          document.getElementById('csrf_token').value = data.data.csrf_token;
+          document.getElementById('session_id').value = data.data.session_id;
+        }
+      } catch (error) {
+        console.error('CSRF token initialization error:', error);
+      }
+    }
+    
     function showMessage(message, type) {
-      messageText.textContent = message;
-      messageDiv.className = `mt-6 p-4 rounded-lg ${
-        type === 'success' 
-          ? 'bg-green-500/20 border border-green-500/50 text-green-300' 
-          : 'bg-red-500/20 border border-red-500/50 text-red-300'
-      }`;
-      messageDiv.classList.remove('hidden');
-      
-      // Hide message after 5 seconds
-      setTimeout(() => {
-        messageDiv.classList.add('hidden');
-      }, 5000);
+      if (messageText && messageDiv) {
+        messageText.textContent = message;
+        messageDiv.className = `mt-6 p-4 rounded-lg ${
+          type === 'success' 
+            ? 'bg-green-500/20 border border-green-500/50 text-green-300' 
+            : 'bg-red-500/20 border border-red-500/50 text-red-300'
+        }`;
+        messageDiv.classList.remove('hidden');
+        
+        // Hide message after 5 seconds
+        setTimeout(() => {
+          messageDiv.classList.add('hidden');
+        }, 5000);
+      }
     }
   });
 </script>
