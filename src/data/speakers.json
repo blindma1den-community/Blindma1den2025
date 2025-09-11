@@ -3,7 +3,7 @@
     "id": 1,
     "name": "Daniela Maissi",
     "title": "Investigadora OWASP Foundation & EC&nbsp;Council Top&nbsp;Researcher&nbsp;2023",
-    "image": "/src/assets/images/daniela.jpg",
+    "image": "/images/daniela.jpg",
     "bio": "Investigadora en la OWASP Foundation, la organización más grande del mundo dedicada a la&nbsp;seguridad web, distinguida como Top&nbsp;Researcher 2023 por EC-Council por su trabajo en soluciones contra el&nbsp;ransomware. Docente de la Maestría de Ciberseguridad de la Universidad Complutense de Madrid y&nbsp;creadora de&nbsp;4Geeks&nbsp;Academy.",
     "country": "🇻🇪🇪🇸",
     "twitter": "blindma1den"
@@ -12,7 +12,7 @@
     "id": 2,
     "name": "Gabriela Garcia",
     "title": "Consultora de Ciberseguridad & Experta en Seguridad del&nbsp;Software",
-    "image": "/src/assets/images/gabs.jpg",
+    "image": "/images/gabs.jpg",
     "bio": "Ingeniero Informático de la Universidad de Las Palmas de Gran Canaria, con más de 5&nbsp;años de experiencia como Consultora de&nbsp;Ciberseguridad. Docente de la Maestría de Ciberseguridad de la Universidad Complutense de Madrid y Experta en Seguridad del&nbsp;Software.",
     "country": "🇨🇺🇪🇸",
     "twitter": "constrainterror"
@@ -21,7 +21,7 @@
     "id": 3,
     "name": "Mario Álvarez",
     "title": "Creador de 'El Pingüino de Mario' & Fundador de&nbsp;DockerLabs.es",
-    "image": "/src/assets/images/mario.jpg",
+    "image": "/images/mario.jpg",
     "bio": "Creador del canal de YouTube 'El Pingüino de Mario', donde imparte contenidos prácticos sobre programación, Linux y&nbsp;seguridad informática. Fundador de la academia 'El Rincón del Hacker' y de la plataforma DockerLabs.es, orientada a la práctica de hacking ético mediante laboratorios vulnerables en&nbsp;Docker.",
     "country": "🇪🇸",
     "twitter": "PinguinoDeMario"
@@ -30,7 +30,7 @@
     "id": 4,
     "name": "Ing. Juanita",
     "title": "Experta en GRC, gestión de riesgos, seguridad de la información y normativas. Data Protection Officer",
-    "image": "/src/assets/images/juanita.jpg",
+    "image": "/images/juanita.jpg",
     "bio": "Ha desempeñado cargos como Coordinadora Regional de Cumplimiento, Líder de Seguridad de la Información y&nbsp;Consultora en&nbsp;Seguridad. Se destaca por su conocimiento en normas internacionales como ISO&nbsp;27001, ISO&nbsp;31000, ISO&nbsp;22301 e&nbsp;ISO&nbsp;32032.",
     "country": "🇨🇴",
     "twitter": "ing_juani7a"
@@ -39,7 +39,7 @@
     "id": 5,
     "name": "MargeLrZ",
     "title": "Especialista en GRC & Fundadora de We&nbsp;Secure&nbsp;Community",
-    "image": "/src/assets/images/marge.jpg",
+    "image": "/images/marge.jpg",
     "bio": "Especialista en Gestión de la Ciberseguridad con experiencia en GRC, auditora interna certificada en&nbsp;ISO&nbsp;27001. Fundadora de We&nbsp;Secure Community y líder en Womcy, ONG internacional de mujeres latinoamericanas en&nbsp;ciberseguridad. Compliance Officer en el&nbsp;sector&nbsp;asegurador.",
     "country": "🇻🇪🇨🇴",
     "twitter": "margelrz"
@@ -48,7 +48,7 @@
     "id": 6,
     "name": "Lenin Alevski",
     "title": "Security Engineer en&nbsp;Google",
-    "image": "/src/assets/images/lenin.jpg",
+    "image": "/images/lenin.jpg",
     "bio": "Ingeniero de Software del Tecnológico de Monterrey con más de 10&nbsp;años de experiencia en el mundo de la&nbsp;tecnología. Actualmente es Security Engineer de&nbsp;Google.",
     "country": "🇲🇽🇺🇸",
     "twitter": "Alevsk"
@@ -57,7 +57,7 @@
     "id": 7,
     "name": "Antony G.",
     "title": "Ingeniero Cloud & Especialista en&nbsp;Kubernetes",
-    "image": "/src/assets/images/anthony.jpg",
+    "image": "/images/anthony.jpg",
     "bio": "Ingeniero cloud, formador y emprendedor caracterizado por su expertise técnica en Kubernetes, la nube y&nbsp;DevOps, especializado en herramientas de infraestructura como código como&nbsp;Terraform. Reside en Múnich, Alemania, desde hace más de una&nbsp;década.",
     "country": "🇻🇪🇩🇪",
     "twitter": "dev_ago"
@@ -66,7 +66,7 @@
     "id": 8,
     "name": "Jose Tovar",
     "title": "Desarrollador FullStack & Arquitecto de&nbsp;Software",
-    "image": "/src/assets/images/guajilo.jpg",
+    "image": "/images/guajilo.jpg",
     "bio": "Desarrollador de software con experiencia en desarrollo BackEnd, FullStack y&nbsp;FrontEnd. Domina varios lenguajes y tecnologías como PHP, JavaScript, Python, Java y&nbsp;MySQL. Radicado en Bogotá, Colombia, con experiencia en arquitectura y diseño de&nbsp;aplicaciones&nbsp;web.",
     "country": "🇻🇪🇨🇴",
     "twitter": "guajilodev"
@@ -75,7 +75,7 @@
     "id": 9,
     "name": "Sheyla Leacock",
     "title": "Embajadora AWS & Máster en&nbsp;Ciberseguridad",
-    "image": "/src/assets/images/sheyla.jpeg",
+    "image": "/images/sheyla.jpeg",
     "bio": "Licenciada en Desarrollo de Software y Máster en Dirección de Ciberseguridad, Hacking Ético y&nbsp;Seguridad Ofensiva. Embajadora de AWS, líder activa en Women of Security Panamá y embajadora de la Fundación&nbsp;Comunidad&nbsp;DOJO.",
     "country": "🇵🇦",
     "twitter": "TechWithSheyla"
@@ -84,7 +84,7 @@
     "id": 10,
     "name": "Nataya Flores",
     "title": "Técnica Informática & Ingeniera de&nbsp;Datos",
-    "image": "/src/assets/images/nataya.jpg",
+    "image": "/images/nataya.jpg",
     "bio": "Técnica informática e ingeniera de datos certificada desde 2022, complementa su formación actualizando conocimientos en&nbsp;bioinformática. Tiene un perfil activo en formación continua y divulgación tecnológica en la comunidad tecnológica de&nbsp;América&nbsp;Latina.",
     "country": "🇦🇷",
     "twitter": "natayadev"
@@ -93,7 +93,7 @@
     "id": 11,
     "name": "Erika Flores",
     "title": "Full Stack Developer & Especialista en&nbsp;AWS",
-    "image": "/src/assets/images/erika.jpeg",
+    "image": "/images/erika.jpeg",
     "bio": "Full Stack Developer con más de 5&nbsp;años de experiencia en React, NodeJS, MongoDB y&nbsp;AWS. Ha trabajado con equipos distribuidos globalmente, destacando en creación y despliegue de aplicaciones web, así como integración de APIs con servicios como WhatsApp, Twilio y&nbsp;Mapbox.",
     "country": "🇲🇽",
     "twitter": "daedra_mex"
@@ -102,7 +102,7 @@
     "id": 12,
     "name": "Daniel Hernandez",
     "title": "Hacker Ético, OSCP+&nbsp;Certified",
-    "image": "/src/assets/images/daniel.jpg",
+    "image": "/images/daniel.jpg",
     "bio": "Consultor en ciberseguridad y hacking ético para Digetech Cybersecurity con clientes de diversas partes de Estados Unidos y&nbsp;Latinoamérica. Experto en redes, Windows y Active Directory, y más de 8&nbsp;años en el mundo de la&nbsp;tecnología. CTF&nbsp;Maker&nbsp;&&nbsp;Host.",
     "country": "🇻🇪🇨🇴",
     "twitter": "DaniTheHack3r"

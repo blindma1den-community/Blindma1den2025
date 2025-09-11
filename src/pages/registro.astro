@@ -3,364 +3,83 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout
-  title="Registro - Blindma1den Hack&Code 2025"
-  description="Regístrate para participar en Blindma1den Hack&Code 2025. Comunidad de desarrolladores y profesionales de ciberseguridad que ayudan a juniors a entrar en la carrera."
+  title="Registro Temporalmente Deshabilitado - Blindma1den Hack&Code 2025"
+  description="El registro está temporalmente deshabilitado mientras preparamos mejoras."
   activePage="/registro"
 >
-  <section class="pt-32 pb-16 px-4">
-    <div class="max-w-7xl mx-auto">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
+  <section class="pt-32 pb-16 px-4 min-h-screen flex items-center justify-center">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-12 border border-cyan-400/50">
         
-        <!-- Left side - Form -->
-        <div class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/50 hover:border-cyan-400/70 transition-all duration-300">
-          <h1 class="text-4xl font-bold text-white mb-2">
-            Tu aventura comienza&nbsp;aquí
-          </h1>
+        <div class="text-6xl mb-8">🚧</div>
+        
+        <h1 class="text-4xl font-bold text-white mb-6">
+          Registro Temporalmente Deshabilitado
+        </h1>
+        
+        <p class="text-xl text-gray-300 mb-6 leading-relaxed">
+          El sistema de registro está temporalmente fuera de servicio mientras preparamos mejoras para ofrecerte la mejor experiencia.
+        </p>
+        
+        <p class="text-lg text-gray-300 mb-8">
+          <strong class="text-white">¡Vuelve pronto!</strong> Estaremos listos muy pronto.
+        </p>
+        
+        <div class="space-y-4">
+          <a 
+            href="/" 
+            class="inline-block bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1"
+          >
+            ← Volver al Inicio
+          </a>
           
-          <p class="text-gray-300 mb-8 leading-relaxed">
-            Rellena este formulario para participar en hackathon o CTF y nos pondremos en&nbsp;contacto contigo. La participación tiene un costo de <strong class="text-white">25&nbsp;USD</strong> por persona y contarás con una sesión de&nbsp;mentoría ¿Estás listo? ¡Vamos!
-          </p>
-
-          <form id="registration-form" class="space-y-4">
-            <!-- CSRF Protection -->
-            <input type="hidden" id="csrf_token" name="csrf_token" value="" />
-            <input type="hidden" id="session_id" name="session_id" value="" />
-            
-            <!-- Row 1: Nombre y Apellido -->
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label for="nombre" class="block text-white font-medium mb-2">Nombre</label>
-                <input
-                  type="text"
-                  id="nombre"
-                  name="nombre"
-                  required
-                  maxlength="50"
-                  class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                  placeholder="Tu nombre"
-                />
-              </div>
-
-              <div>
-                <label for="apellido" class="block text-white font-medium mb-2">Apellido</label>
-                <input
-                  type="text"
-                  id="apellido"
-                  name="apellido"
-                  required
-                  maxlength="50"
-                  class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                  placeholder="Tu apellido"
-                />
-              </div>
-            </div>
-
-            <!-- Row 2: Username de X y Email -->
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label for="username_x" class="block text-white font-medium mb-2">Username de X</label>
-                <div class="relative">
-                  <span class="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400">@</span>
-                  <input
-                    type="text"
-                    id="username_x"
-                    name="username_x"
-                    required
-                    maxlength="30"
-                    pattern="[a-zA-Z0-9_-]+"
-                    class="w-full pl-8 pr-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                    placeholder="tu_usuario"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label for="email" class="block text-white font-medium mb-2">Email</label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  maxlength="254"
-                  class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                  placeholder="tu@email.com"
-                />
-              </div>
-            </div>
-
-            <!-- Row 3: Modalidad y País -->
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label for="modalidad" class="block text-white font-medium mb-2">¿Hackathon o CTF?</label>
-                <select
-                  id="modalidad"
-                  name="modalidad"
-                  required
-                  class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                >
-                  <option value="" class="bg-gray-800 text-white">Selecciona una opción</option>
-                  <option value="CTF" class="bg-gray-800 text-white">CTF</option>
-                  <option value="Hackathon" class="bg-gray-800 text-white">Hackathon</option>
-                  <option value="Ambos" class="bg-gray-800 text-white">Ambos</option>
-                </select>
-              </div>
-
-              <div>
-                <label for="pais" class="block text-white font-medium mb-2">País de residencia</label>
-                <input
-                  type="text"
-                  id="pais"
-                  name="pais"
-                  required
-                  maxlength="50"
-                  class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                  placeholder="Tu país"
-                />
-              </div>
-            </div>
-
-            <!-- Row 4: Nombre de equipo y Número de integrantes -->
-            <div class="grid md:grid-cols-2 gap-4">
-              <div>
-                <label for="nombre_equipo" class="block text-white font-medium mb-2">Nombre de tu equipo</label>
-                <input
-                  type="text"
-                  id="nombre_equipo"
-                  name="nombre_equipo"
-                  maxlength="50"
-                  class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                  placeholder="Nombre de tu equipo (opcional)"
-                />
-              </div>
-
-              <div>
-                <label for="num_integrantes" class="block text-white font-medium mb-2">Número de integrantes (Max 3)</label>
-                <input
-                  type="number"
-                  id="num_integrantes"
-                  name="num_integrantes"
-                  min="1"
-                  max="3"
-                  required
-                  class="w-full px-4 py-2.5 rounded-lg bg-white/10 backdrop-blur-sm border border-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-[#753BE8] focus:border-transparent transition-all duration-300"
-                  placeholder="1"
-                />
-              </div>
-            </div>
-
-            <!-- Submit Button -->
-            <div class="flex justify-center pt-4">
-              <button 
-                type="submit"
-                class="bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[120px]"
-              >
-                Enviar
-              </button>
-            </div>
-          </form>
-          
-          <!-- Success/Error Messages -->
-          <div id="form-message" class="mt-6 p-4 rounded-lg hidden">
-            <p id="message-text" class="text-center font-medium"></p>
+          <div class="text-sm text-gray-400 mt-4">
+            <p>Mientras tanto, puedes seguirnos en nuestras redes sociales para estar al día con las novedades.</p>
           </div>
         </div>
-
-        <!-- Right side - Illustration -->
-        <div class="hidden lg:flex items-center justify-center">
-          <div class="relative">
-            <!-- Illustration placeholder - you can replace this with the actual SVG -->
-            <div class="w-96 h-96 bg-gradient-to-br from-purple-500/20 to-cyan-400/20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10">
-              <div class="text-center space-y-4">
-                <div class="text-8xl">💻</div>
-                <h3 class="text-2xl font-bold text-white">¡Únete al&nbsp;desafío!</h3>
-                <p class="text-gray-300">Tu aventura en ciberseguridad comienza&nbsp;aquí</p>
-              </div>
-            </div>
-            
-            <!-- Floating elements -->
-            <div class="absolute -top-4 -right-4 w-20 h-20 bg-cyan-400/20 rounded-lg rotate-12 backdrop-blur-sm"></div>
-            <div class="absolute -bottom-4 -left-4 w-16 h-16 bg-purple-500/20 rounded-full backdrop-blur-sm"></div>
-            <div class="absolute top-1/2 -left-8 w-12 h-12 bg-pink-500/20 rounded-lg rotate-45 backdrop-blur-sm"></div>
-          </div>
-        </div>
+        
       </div>
     </div>
   </section>
 </Layout>
 
 <script>
-  document.addEventListener("DOMContentLoaded", async function () {
-    const form = document.getElementById("registration-form") as HTMLFormElement;
-    const messageDiv = document.getElementById("form-message");
-    const messageText = document.getElementById("message-text");
-    const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement;
-
-    // Initialize CSRF protection
-    await initializeCSRF();
-
-    if (form) {
-      form.addEventListener("submit", async (e) => {
+  // Bloquear cualquier intento de acceso programático
+  document.addEventListener('DOMContentLoaded', function() {
+    // Bloquear formularios si existen
+    const forms = document.querySelectorAll('form');
+    forms.forEach(form => {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
-        
-        // Disable submit button to prevent double submission
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.textContent = 'Enviando...';
-        }
-
-        try {
-          // Get form data
-          const formData = new FormData(form);
-          
-          // Basic client-side validation
-          const nombre = formData.get("nombre") as string;
-          const apellido = formData.get("apellido") as string;
-          const username_x = formData.get("username_x") as string;
-          const email = formData.get("email") as string;
-          const modalidad = formData.get("modalidad") as string;
-          const pais = formData.get("pais") as string;
-          const num_integrantes = formData.get("num_integrantes") as string;
-
-          // Basic validation
-          if (!nombre || !apellido || !username_x || !email || !modalidad || !pais || !num_integrantes) {
-            showMessage('Por favor, completa todos los campos requeridos.', 'error');
-            return;
-          }
-
-          // Email validation
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            showMessage('Por favor, ingresa un email válido.', 'error');
-            return;
-          }
-
-          // Username validation
-          const usernameRegex = /^[a-zA-Z0-9_-]+$/;
-          if (!usernameRegex.test(username_x) || username_x.length < 3 || username_x.length > 30) {
-            showMessage('Username debe tener entre 3-30 caracteres y solo contener letras, números, guiones y guiones bajos.', 'error');
-            return;
-          }
-
-          // Team members validation
-          const numMembers = parseInt(num_integrantes);
-          if (isNaN(numMembers) || numMembers < 1 || numMembers > 3) {
-            showMessage('Número de integrantes debe ser entre 1 y 3.', 'error');
-            return;
-          }
-
-          // Team name validation for multi-member teams
-          const nombre_equipo = formData.get("nombre_equipo") as string;
-          if (numMembers > 1 && (!nombre_equipo || nombre_equipo.trim() === '')) {
-            showMessage('Nombre del equipo es requerido para equipos de más de 1 integrante.', 'error');
-            return;
-          }
-
-          // Submit to secure API endpoint
-          const response = await fetch('/api/registro', {
-            method: 'POST',
-            body: formData
-          });
-
-          const result = await response.json();
-
-          if (result.success) {
-            showMessage(result.message, 'success');
-            form.reset();
-            // Regenerate CSRF token for next submission
-            await initializeCSRF();
-          } else {
-            showMessage(result.error || 'Error al procesar el registro.', 'error');
-          }
-
-        } catch (error) {
-          console.error('Registration form error:', error);
-          showMessage('Error de conexión. Intenta de nuevo más tarde.', 'error');
-        } finally {
-          // Re-enable submit button
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Enviar';
-          }
-        }
+        alert('El registro está temporalmente deshabilitado.');
+        return false;
       });
-    }
-
-    async function initializeCSRF() {
-      try {
-        const response = await fetch('/api/csrf-token');
-        const data = await response.json();
-        
-        if (data.success) {
-          (document.getElementById('csrf_token') as HTMLInputElement).value = data.data.csrf_token;
-          (document.getElementById('session_id') as HTMLInputElement).value = data.data.session_id;
-        }
-      } catch (error) {
-        console.error('CSRF token initialization error:', error);
+    });
+    
+    // Bloquear APIs de registro
+    const originalFetch = window.fetch;
+    window.fetch = function(...args) {
+      const url = args[0];
+      if (typeof url === 'string' && url.includes('/api/registro')) {
+        return Promise.reject(new Error('Registro temporalmente deshabilitado'));
       }
-    }
-
-    function showMessage(message: string, type: string) {
-      if (messageDiv && messageText) {
-        messageText.textContent = message;
-        messageDiv.classList.remove("hidden", "bg-green-500/20", "bg-red-500/20", "border-green-400", "border-red-400");
-        
-        if (type === "success") {
-          messageDiv.classList.add("bg-green-500/20", "border", "border-green-400");
-          messageText.classList.remove("text-red-400");
-          messageText.classList.add("text-green-400");
-        } else {
-          messageDiv.classList.add("bg-red-500/20", "border", "border-red-400");
-          messageText.classList.remove("text-green-400");
-          messageText.classList.add("text-red-400");
-        }
-        
-        setTimeout(() => {
-          messageDiv?.classList.add("hidden");
-        }, 5000);
-      }
-    }
+      return originalFetch.apply(this, args);
+    };
   });
 </script>
 
 <style>
-  /* Custom styles for form elements */
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
-
-  select option {
-    background-color: #1f2937;
-    color: white;
-  }
-
-  /* Animation for floating elements */
   @keyframes float {
-    0%, 100% { transform: translateY(0px) rotate(12deg); }
-    50% { transform: translateY(-10px) rotate(12deg); }
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
   }
-
-  .absolute:nth-child(2) {
+  
+  .text-6xl {
     animation: float 3s ease-in-out infinite;
   }
-
-  .absolute:nth-child(3) {
-    animation: float 4s ease-in-out infinite 0.5s;
-  }
-
-  .absolute:nth-child(4) {
-    animation: float 5s ease-in-out infinite 1s;
-  }
-
+  
   @media (prefers-reduced-motion: reduce) {
-    .absolute:nth-child(2),
-    .absolute:nth-child(3),
-    .absolute:nth-child(4) {
+    .text-6xl {
       animation: none;
     }
   }
