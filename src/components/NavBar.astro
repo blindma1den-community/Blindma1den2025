@@ -25,14 +25,14 @@ const navItems = [
          transition-all duration-300 ease-in-out"
 >
 	<div class="max-w-7xl mx-auto px-4">
-		<div class="flex items-center justify-between h-16">
+		<div class="flex items-center justify-between min-h-[8.5rem] py-2">
 			<!-- Logo -->
-			<a href="/" class="flex items-center space-x-6">
-				<img src="/logo.png" alt="Logo" class="h-20 w-auto" />
+			<a href="/" class="flex items-center">
+				<img src="/logo.png" alt="Logo" class="h-32 w-auto" />
 			</a>
 
 			<!-- Desktop links -->
-			<div class="hidden md:flex space-x-6">
+			<div class="hidden md:flex space-x-6 items-center">
 				{
 					navItems.map((item) => (
 						<a

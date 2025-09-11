@@ -2,12 +2,12 @@
   {
     "id": 1,
     "question":"¿Necesito experiencia previa?",
-    "answer": "No. Lo único que necesitas es curiosidad y ganas de aprender."
+    "answer": "No. Lo único que necesitas es curiosidad y&nbsp;ganas de&nbsp;aprender."
   },
   {
     "id": 2,
     "question":"¿Debo llevar algo especial?",
-    "answer": "Solo tu laptop. Nosotros ponemos el resto."
+    "answer": "Solo tu&nbsp;laptop. Nosotros ponemos el&nbsp;resto."
   },
   {
     "id": 3,
@@ -17,11 +17,11 @@
   {
     "id": 4,
     "question": "¿El CTF y el Hackathon tienen costo?",
-    "answer": "¿El CTF y el Hackathon tienen costo?"
+    "answer": "Sí, ambos son actividades pagas con&nbsp;cupos&nbsp;limitados."
   },
   {
     "id": 5,
     "question": "¿Puedo participar si no estoy en Madrid?",
-    "answer": "EClaro. El evento es híbrido: puedes unirte online desde cualquier lugar del mundo."
+    "answer": "¡Claro!, el evento es híbrido, puedes unirte online desde cualquier lugar del&nbsp;mundo."
   }
 ]

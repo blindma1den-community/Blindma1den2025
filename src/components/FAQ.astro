@@ -17,7 +17,7 @@ const faqs: FAQItem[] = faqData;
         <!-- Left side - Title -->
         <div class="flex items-center">
           <h2 class="text-5xl font-bold bg-gradient-to-r from-white to-[#A412BA] bg-clip-text text-transparent leading-tight">
-            ❓ Preguntas frecuentes
+            Preguntas frecuentes
           </h2>
         </div>
         
@@ -40,8 +40,7 @@ const faqs: FAQItem[] = faqData;
                 class={`faq-answer overflow-hidden transition-all duration-300 ease-in-out ${index === 0 ? 'max-h-96 opacity-100 pb-4' : 'max-h-0 opacity-0'}`}
                 data-faq-answer={faq.id}
               >
-                <div class="text-gray-300 leading-relaxed">
-                  {faq.answer}
+                <div class="text-gray-300 leading-relaxed" set:html={faq.answer}>
                 </div>
               </div>
             </div>
