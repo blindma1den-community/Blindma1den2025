@@ -30,7 +30,7 @@ const faqs: FAQItem[] = faqData;
                 data-faq-id={faq.id}
                 aria-expanded="false"
               >
-                <span class="font-medium pr-4">{faq.question}</span>
+                <span class="font-medium pr-4" set:html={faq.question}></span>
                 <span class="faq-icon text-2xl transition-transform duration-300 flex-shrink-0">
                   {index === 0 ? '−' : '+'}
                 </span>
