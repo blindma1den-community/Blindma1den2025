@@ -12,9 +12,6 @@
       <!-- Contact Form -->
       <div class="max-w-2xl mx-auto">
         <form id="contactForm" class="space-y-6">
-        <!-- CSRF Protection -->
-        <input type="hidden" id="csrf_token" name="csrf_token" value="" />
-        <input type="hidden" id="session_id" name="session_id" value="" />
         
         <!-- Email Field -->
         <div class="form-group">
@@ -26,7 +23,6 @@
             id="email" 
             name="email"
             required
-            maxlength="254"
             class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
             placeholder="tu@email.com"
           />
@@ -42,7 +38,6 @@
             id="nombre" 
             name="nombre"
             required
-            maxlength="100"
             class="w-full px-4 py-3 bg-transparent border-b-2 border-gray-600 text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300"
             placeholder="Tu nombre completo"
           />
@@ -58,7 +53,6 @@
             name="mensaje"
             rows="6"
             required
-            maxlength="1000"
             class="w-full px-4 py-3 bg-transparent border-2 border-gray-600 rounded-lg text-white placeholder-gray-400 focus:border-cyan-400 focus:outline-none transition-colors duration-300 resize-none"
             placeholder="Escribe tu mensaje aquí..."
           ></textarea>
@@ -85,99 +79,26 @@
 </section>
 
 <script>
-  document.addEventListener('DOMContentLoaded', async function() {
+  document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('contactForm');
     const messageDiv = document.getElementById('form-message');
     const messageText = document.getElementById('message-text');
     const submitButton = form?.querySelector('button[type="submit"]');
     
-    // Initialize CSRF protection
-    await initializeCSRF();
-    
     if (form) {
-      form.addEventListener('submit', async function(e) {
+      form.addEventListener('submit', function(e) {
         e.preventDefault();
         
-        // Disable submit button to prevent double submission
-        if (submitButton) {
-          submitButton.disabled = true;
-          submitButton.textContent = 'Enviando...';
-        }
+        // Get form data
+        const formData = new FormData(form);
+        const email = formData.get('email');
+        const nombre = formData.get('nombre');
+        const mensaje = formData.get('mensaje');
         
-        try {
-          // Get form data
-          const formData = new FormData(form);
-          
-          // Basic client-side validation
-          const email = formData.get('email');
-          const nombre = formData.get('nombre');
-          const mensaje = formData.get('mensaje');
-          
-          if (!email || !nombre || !mensaje) {
-            showMessage('Por favor, completa todos los campos.', 'error');
-            return;
-          }
-          
-          // Email validation
-          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-          if (!emailRegex.test(email)) {
-            showMessage('Por favor, ingresa un email válido.', 'error');
-            return;
-          }
-          
-          // Length validation
-          if (nombre.length < 2 || nombre.length > 100) {
-            showMessage('El nombre debe tener entre 2 y 100 caracteres.', 'error');
-            return;
-          }
-          
-          if (mensaje.length < 10 || mensaje.length > 1000) {
-            showMessage('El mensaje debe tener entre 10 y 1000 caracteres.', 'error');
-            return;
-          }
-          
-          // Submit to secure API endpoint
-          const response = await fetch('/api/contact', {
-            method: 'POST',
-            body: formData
-          });
-          
-          const result = await response.json();
-          
-          if (result.success) {
-            showMessage(result.message, 'success');
-            form.reset();
-            // Regenerate CSRF token for next submission
-            await initializeCSRF();
-          } else {
-            showMessage(result.error || 'Error al enviar el mensaje.', 'error');
-          }
-          
-        } catch (error) {
-          console.error('Contact form error:', error);
-          showMessage('Error de conexión. Intenta de nuevo más tarde.', 'error');
-        } finally {
-          // Re-enable submit button
-          if (submitButton) {
-            submitButton.disabled = false;
-            submitButton.textContent = 'Enviar mensaje';
-          }
-        }
+        // Simple simulation of form submission
+        showMessage('¡Mensaje enviado exitosamente! Te contactaremos pronto.', 'success');
+        form.reset();
       });
-    }
-    
-    async function initializeCSRF() {
-      try {
-        const response = await fetch('/api/csrf-token');
-        const data = await response.json();
-        
-        if (data.success) {
-          document.getElementById('csrf_token').value = data.data.csrf_token;
-          document.getElementById('session_id').value = data.data.session_id;
-        }
-      } catch (error) {
-        console.error('CSRF token initialization error:', error);
-      }
     }
     
     function showMessage(message, type) {
