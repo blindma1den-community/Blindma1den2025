@@ -115,9 +115,6 @@ import Layout from "../layouts/Layout.astro";
                   <option value="Hackathon" class="bg-gray-800 text-white"
                     >Hackathon</option
                   >
-                  <option value="Ambos" class="bg-gray-800 text-white"
-                    >Ambos</option
-                  >
                 </select>
               </div>
 
@@ -172,13 +169,36 @@ import Layout from "../layouts/Layout.astro";
               </div>
             </div>
 
+            <!-- Privacy Policy Checkbox -->
+            <div class="flex items-start space-x-3 pt-4">
+              <input
+                type="checkbox"
+                id="privacy_policy"
+                name="privacy_policy"
+                required
+                class="mt-1 h-4 w-4 rounded border border-gray-600 bg-white/10 backdrop-blur-sm text-[#753BE8] focus:ring-2 focus:ring-[#753BE8] focus:ring-offset-0"
+              />
+              <label for="privacy_policy" class="text-sm text-gray-300 leading-relaxed">
+                He leído y acepto la
+                <a
+                  href="/privacidad"
+                  target="_blank"
+                  class="text-[#753BE8] hover:text-purple-400 underline transition-colors"
+                >
+                  Política de Privacidad y Tratamiento de Datos Personales
+                </a>
+                de BLINDMA1DEN
+              </label>
+            </div>
+
             <!-- Submit Button -->
-            <div class="flex justify-center pt-4">
+            <div class="flex justify-center pt-6">
               <button
                 type="submit"
-                class="bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[120px]"
+                id="submit-button"
+                class="bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[200px] disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Enviar
+                🚀 Proceder al Pago ($25)
               </button>
             </div>
           </form>
@@ -229,35 +249,98 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById(
-      "registration-form",
-    ) as HTMLFormElement;
+    const form = document.getElementById("registration-form") as HTMLFormElement;
     const messageDiv = document.getElementById("form-message");
     const messageText = document.getElementById("message-text");
+    const submitButton = document.getElementById("submit-button") as HTMLButtonElement;
 
     if (form) {
       form.addEventListener("submit", async (e) => {
         e.preventDefault();
 
-        // Get form data
-        const formData = new FormData(form);
-        const data = {
-          nombre: formData.get("nombre") as string,
-          apellido: formData.get("apellido") as string,
-          username_x: formData.get("username_x") as string,
-          email: formData.get("email") as string,
-          modalidad: formData.get("modalidad") as string,
-          nombre_equipo: formData.get("nombre_equipo") as string,
-          num_integrantes: formData.get("num_integrantes") as string,
-          pais: formData.get("pais") as string,
-        };
+        // Disable button and show loading
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.innerHTML = '⏳ Procesando...';
+        }
 
-        // Simple simulation of form submission
-        showMessage(
-          "¡Registro exitoso! Te contactaremos pronto con más información.",
-          "success",
-        );
-        form.reset();
+        try {
+          // Get form data
+          const formData = new FormData(form);
+          const data = {
+            nombre: formData.get("nombre") as string,
+            apellido: formData.get("apellido") as string,
+            email: formData.get("email") as string,
+            telefono: formData.get("username_x") as string, // Usar username_x como telefono/contacto
+            pais: formData.get("pais") as string,
+            modalidad: formData.get("modalidad") as string,
+            experiencia: '', // Campo opcional por ahora
+            team_name: formData.get("nombre_equipo") as string,
+            team_members: parseInt(formData.get("num_integrantes") as string) || 1,
+          };
+
+          // Validate required fields
+          const requiredFields = ['nombre', 'apellido', 'email', 'telefono', 'pais', 'modalidad'];
+          const errors = [];
+
+          for (const field of requiredFields) {
+            if (!data[field] || data[field].trim() === '') {
+              errors.push(`El campo ${field} es obligatorio`);
+            }
+          }
+
+          // Validate privacy policy checkbox
+          const privacyCheckbox = document.getElementById('privacy_policy') as HTMLInputElement;
+          if (!privacyCheckbox || !privacyCheckbox.checked) {
+            errors.push('Debes aceptar la Política de Privacidad para continuar');
+          }
+
+          if (errors.length > 0) {
+            showMessage(errors.join(', '), 'error');
+            return;
+          }
+
+          // Send to PHP backend to create payment session
+          const isDevelopment = window.location.hostname === 'localhost';
+          const apiUrl = isDevelopment
+            ? 'http://localhost:8080/create_payment.php'
+            : '/create_payment.php';
+
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          });
+
+          const result = await response.json();
+
+          if (!response.ok) {
+            throw new Error(result.error || 'Error al procesar la solicitud');
+          }
+
+          if (result.success && result.checkout_url) {
+            // Store temp_id in localStorage for later use
+            localStorage.setItem('blindma1den_temp_id', result.temp_id);
+            localStorage.setItem('blindma1den_session_id', result.session_id);
+
+            // Redirect to Stripe Checkout
+            window.location.href = result.checkout_url;
+          } else {
+            throw new Error('Error al crear la sesión de pago');
+          }
+
+        } catch (error) {
+          console.error('Payment error:', error);
+          showMessage(error.message || 'Error al procesar el pago', 'error');
+        } finally {
+          // Re-enable button
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.innerHTML = '🚀 Proceder al Pago ($25)';
+          }
+        }
       });
     }
 

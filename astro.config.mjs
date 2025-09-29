@@ -13,7 +13,7 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
     build: {
-      assetsInlineLimit: 0,
+      assetsInlineLimit: 4096, // Inline assets < 4KB
       rollupOptions: {
         output: {
           assetFileNames: '_astro/[name].[hash][extname]',
@@ -22,5 +22,8 @@ export default defineConfig({
         }
       }
     }
+  },
+  server: {
+    port: 4321
   }
 });

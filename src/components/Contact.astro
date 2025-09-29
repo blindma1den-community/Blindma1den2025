@@ -85,21 +85,57 @@
     const messageText = document.getElementById('message-text');
     const submitButton = form?.querySelector('button[type="submit"]');
     
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    if (!form || !submitButton) return;
+
+    form.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const originalButtonText = submitButton.innerHTML;
+      submitButton.disabled = true;
+      submitButton.innerHTML = `
+        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline-block" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+          <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+          <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+        </svg>
+        Enviando...
+      `;
+      
+      const formData = new FormData(form);
+      const data = {
+        email: formData.get('email'),
+        nombre: formData.get('nombre'),
+        mensaje: formData.get('mensaje')
+      };
+      
+      try {
+        // Detectar ambiente automáticamente
+        const isDevelopment = window.location.hostname === 'localhost';
+        const apiUrl = isDevelopment
+          ? 'http://localhost:8080/contact_secure.php'
+          : '/contact_secure.php';
+
+        const response = await fetch(apiUrl, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data)
+        });
         
-        // Get form data
-        const formData = new FormData(form);
-        const email = formData.get('email');
-        const nombre = formData.get('nombre');
-        const mensaje = formData.get('mensaje');
+        const result = await response.json();
         
-        // Simple simulation of form submission
-        showMessage('¡Mensaje enviado exitosamente! Te contactaremos pronto.', 'success');
+        if (!response.ok) {
+          throw new Error(result.error || 'Ocurrió un error en el servidor.');
+        }
+        
+        showMessage(result.message, 'success');
         form.reset();
-      });
-    }
+        
+      } catch (error) {
+        showMessage(error.message, 'error');
+      } finally {
+        submitButton.disabled = false;
+        submitButton.innerHTML = originalButtonText;
+      }
+    });
     
     function showMessage(message, type) {
       if (messageText && messageDiv) {
@@ -111,7 +147,6 @@
         }`;
         messageDiv.classList.remove('hidden');
         
-        // Hide message after 5 seconds
         setTimeout(() => {
           messageDiv.classList.add('hidden');
         }, 5000);

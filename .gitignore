@@ -17,6 +17,11 @@ pnpm-debug.log*
 .env
 .env.production
 
+# PHP configuration (NEVER commit)
+php/config.php
+php/tmp/
+php/vendor/
+
 # macOS-specific files
 .DS_Store
 

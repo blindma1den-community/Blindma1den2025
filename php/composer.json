@@ -1,0 +1,14 @@
+{
+    "name": "blindma1den/payment-system",
+    "description": "Sistema de pagos para Blindma1den Hack&Code 2025",
+    "require": {
+        "stripe/stripe-php": "^13.0",
+        "vlucas/phpdotenv": "^5.5",
+        "phpmailer/phpmailer": "^6.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "Blindma1den\\": "src/"
+        }
+    }
+}

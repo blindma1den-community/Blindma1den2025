@@ -10,7 +10,7 @@ const navItems = [
 	{ name: "Speakers", href: "/#speakers" },
 	{ name: "Charlas2024", href: "/#charlas2024" },
 	{ name: "Evento", href: "/#event-description" },
-	//{ name: "Registro", href: "/registro" },
+	{ name: "Registro", href: "/registro" },
 	// { name: "Actividades", href: "#actividades" },
 	// { name: "Sponsors", href: "#sponsors" },
 	{ name: "FAQ", href: "/#faq" },
@@ -73,7 +73,7 @@ const navItems = [
 					<a
 						href={item.href}
 						class={`block px-3 py-2 rounded-md text-sm font-medium text-white
-                ${item.href === activePage ? "bg-white/20" : ""}
+                ${(item.href === activePage || (item.href === "/" && activePage === "/")) ? "bg-white/20" : ""}
                 hover:bg-white/10 transition`}
 					>
 						{item.name}
@@ -110,7 +110,7 @@ const navItems = [
 
 	const nav = document.getElementById("navbar") as HTMLElement;
 
-	const onScroll = () => {
+	const updateNavbar = () => {
 		if (window.scrollY > 40) {
 			nav.classList.remove("bg-transparent");
 			nav.classList.add("bg-[#2E0967]/60", "backdrop-blur-[41.67px]");
@@ -120,5 +120,9 @@ const navItems = [
 		}
 	};
 
-	window.addEventListener("scroll", onScroll, { passive: true });
+	// Aplicar el estado inicial basado en la posición actual del scroll
+	updateNavbar();
+
+	// Escuchar eventos de scroll
+	window.addEventListener("scroll", updateNavbar, { passive: true });
 </script>

@@ -46,34 +46,39 @@
 
 	<!-- Contenido principal -->
 	<div class="relative z-30 text-center px-4 py-20 max-w-6xl mx-auto">
+		<!-- Nivel 1: Información más importante - Call to action principal -->
 		<h1
-			class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 leading-tight"
+			class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white mb-6 leading-tight"
 		>
-			<span class="drop-shadow-2xl">
-				⚡ ¿Listo para hackear, aprender y&nbsp;ganar?
+			<span class="drop-shadow-2xl bg-gradient-to-r from-white via-purple-100 to-white bg-clip-text text-transparent">
+				<span class="text-yellow-400">⚡</span> ¿Listo para hackear, aprender y&nbsp;ganar?
 			</span>
 		</h1>
 
-		<h2 class="text-2xl font-bold text-white mb-8 leading-tight">
-			<span>
-				El Blindma1den Hack&Code.
+		<!-- Nivel 2: Información secundaria - Descripción del evento -->
+		<h2 class="text-2xl sm:text-3xl md:text-4xl font-semibold text-purple-100 mb-8 leading-relaxed opacity-90">
+			<span class="drop-shadow-lg">
+				Blindma1den Hack&Code
 			</span>
-			<br />
-			<span>3&nbsp;días de retos, comunidad y&nbsp;adrenalina en Madrid o&nbsp;desde&nbsp;casa.</span>
 		</h2>
 
+		<!-- Nivel 3: Información de apoyo - Detalles específicos -->
+		<h3 class="text-lg sm:text-xl md:text-2xl font-medium text-purple-200 mb-6 leading-relaxed opacity-80">
+			<span>3&nbsp;días de retos, comunidad y&nbsp;adrenalina</span>
+		</h3>
+
 		<p
-			class="text-xl sm:text-2xl text-white mb-12 opacity-95 drop-shadow-lg font-light"
+			class="text-base sm:text-lg md:text-xl text-purple-300 mb-12 opacity-75 drop-shadow-lg font-light"
 		>
-			📍 La&nbsp;Nave, Madrid&nbsp;| Octubre&nbsp;3–5&nbsp;| Híbrido
+			📍 Hacker House, Madrid&nbsp;| Octubre&nbsp;3–5&nbsp;
 		</p>
 
-		<!-- <a
+		<a
 			href="/registro"
 			class="inline-block bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1 active:translate-y-0 focus:outline-none focus:ring-4 focus:ring-[#753BE8]/30 uppercase tracking-wide text-lg min-w-[120px] text-center"
 		>
 			👉 Quiero unirme al reto
-		</a> -->
+		</a>
 	</div>
 </section>
 
@@ -88,17 +93,10 @@
 
 		// Verificar que los elementos existen
 		const braveNotice = document.getElementById('brave-notice');
-		console.log('Elements found:', { 
-			video: !!video, 
-			fallback: !!fallback, 
-			braveNotice: !!braveNotice 
-		});
 
 		// Detectar Brave y su configuración de fingerprinting
 		const isBrave = !!(navigator as any).brave || navigator.userAgent.includes('Brave');
 		const hasBraveShields = !!(navigator as any).brave;
-		
-		console.log('Browser detection:', { isBrave, hasBraveShields, userAgent: navigator.userAgent });
 		
 		// Configuración adicional para mejorar compatibilidad con Brave
 		video.defaultMuted = true;
@@ -114,27 +112,14 @@
 			// Verificar si no está pausado por políticas del navegador
 			const isNotBlocked = !video.paused || hasVideoPlayed;
 			
-			console.log('Video block detection:', {
-				hasValidDimensions,
-				isLoaded,
-				isNotBlocked,
-				videoWidth: video.videoWidth,
-				videoHeight: video.videoHeight,
-				readyState: video.readyState,
-				paused: video.paused,
-				hasVideoPlayed
-			});
-			
 			return !(hasValidDimensions && isLoaded && isNotBlocked);
 		}
 
 		// Función para mostrar mensaje de Brave
 		function showBraveMessage() {
 			const braveNotice = document.getElementById('brave-notice');
-			console.log('Showing Brave message, element found:', !!braveNotice);
 			if (braveNotice) {
 				braveNotice.style.opacity = '1';
-				console.log('Brave message displayed');
 				// Ocultar el mensaje después de 10 segundos
 				setTimeout(() => {
 					braveNotice.style.opacity = '0';
@@ -144,21 +129,17 @@
 
 		// Si detectamos Brave, usar estrategia más conservadora
 		if (isBrave || hasBraveShields) {
-			console.log('Brave browser detected - using optimized strategy');
 			
 			// Mostrar mensaje después de un breve delay para testing
 			setTimeout(() => {
-				console.log('Brave detected - showing message for testing');
 				showBraveMessage();
 			}, 2000);
 			
 			// Verificar después de un momento si el video se está bloqueando
 			setTimeout(() => {
 				const isBlocked = detectBraveVideoBlock();
-				console.log('Video blocked?', isBlocked);
 				
 				if (isBlocked || !hasVideoPlayed) {
-					console.log('Brave fingerprinting likely blocking video');
 					showFallback();
 					showBraveMessage();
 				}
@@ -169,7 +150,6 @@
 		function showFallback() {
 			if (fallback) {
 				fallback.style.opacity = '1';
-				console.log('Video fallback activated');
 			}
 		}
 
@@ -192,54 +172,6 @@
 			}
 		}
 
-		// Event listeners para el video
-		video.addEventListener('loadstart', () => {
-			console.log('Video loading started');
-		});
-
-		video.addEventListener('canplay', () => {
-			console.log('Video can play');
-			hideFallback();
-		});
-
-		video.addEventListener('playing', () => {
-			console.log('Video is playing');
-			hasVideoPlayed = true;
-			hideFallback();
-		});
-
-		video.addEventListener('pause', () => {
-			console.log('Video paused');
-			if (hasVideoPlayed) {
-				showFallback();
-			}
-		});
-
-		video.addEventListener('stalled', () => {
-			console.log('Video stalled');
-			showFallback();
-		});
-
-		video.addEventListener('error', (e: Event) => {
-			console.log('Video error:', e);
-			showFallback();
-			if (isBrave) {
-				showBraveMessage();
-			}
-		});
-
-		video.addEventListener('loadstart', () => {
-			console.log('Video loading started');
-		});
-
-		video.addEventListener('loadeddata', () => {
-			console.log('Video data loaded');
-		});
-
-		video.addEventListener('canplaythrough', () => {
-			console.log('Video can play through');
-		});
-
 		// Múltiples intentos de reproducción para evitar bloqueos
 		function attemptVideoPlay(attempts = 3) {
 			const playPromise = video.play();
@@ -247,13 +179,10 @@
 			if (playPromise !== undefined) {
 				playPromise
 					.then(() => {
-						console.log('Video autoplay successful');
 						hasVideoPlayed = true;
 						hideFallback();
 					})
 					.catch((error: unknown) => {
-						console.log(`Video autoplay failed (attempt ${4 - attempts}):`, error);
-						
 						if (attempts > 1) {
 							// Reintentar después de un breve delay
 							setTimeout(() => attemptVideoPlay(attempts - 1), 500);
@@ -315,19 +244,10 @@
 			}
 		}
 
-		// Eventos de interacción para activar video
-		const interactionEvents = ['click', 'touchstart', 'keydown', 'mousemove', 'scroll'];
-		const onceOptions = { once: true, passive: true };
-		
-		interactionEvents.forEach(eventType => {
-			document.addEventListener(eventType, enableVideoOnInteraction, onceOptions);
-		});
-
 		// Timeout de seguridad - ajustado para Brave
 		const timeoutDuration = (isBrave || hasBraveShields) ? 1500 : 3000;
 		setTimeout(() => {
 			if (!hasVideoPlayed || (video && video.paused)) {
-				console.log('Video timeout - showing fallback');
 				showFallback();
 				
 				// Si es Brave y el video falló, mostrar mensaje
@@ -340,14 +260,11 @@
 		// Test final - mostrar mensaje después de 5 segundos si es Brave
 		if (isBrave) {
 			setTimeout(() => {
-				console.log('Final test - showing Brave message');
 				const braveElement = document.getElementById('brave-notice');
 				if (braveElement) {
 					braveElement.style.opacity = '1';
 					braveElement.style.transform = 'translateY(0)';
-					console.log('Brave message should be visible now');
 				} else {
-					console.error('Brave notice element not found!');
 				}
 			}, 5000);
 		}

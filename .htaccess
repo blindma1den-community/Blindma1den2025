@@ -1,0 +1,100 @@
+# .htaccess - Configuración optimizada para Apache 2.4
+# Compatible con servidor Apache 2.4.65
+
+# Bloquear acceso directo a archivos PHP (solo permitir en php/)
+<FilesMatch "\.php$">
+    # Solo permitir archivos PHP en el directorio php/
+    Require expr %{REQUEST_URI} =~ /php/
+</FilesMatch>
+
+# Proteger archivos de configuración sensibles
+<Files "config.php">
+    Require all denied
+</Files>
+
+<Files ".env">
+    Require all denied
+</Files>
+
+# Proteger archivos que empiezan con punto (ocultos)
+<FilesMatch "^\..*">
+    Require all denied
+</FilesMatch>
+
+# Headers de seguridad mejorados
+<IfModule mod_headers.c>
+    Header always set X-Content-Type-Options nosniff
+    Header always set X-Frame-Options DENY
+    Header always set X-XSS-Protection "1; mode=block"
+    Header always set Referrer-Policy "strict-origin-when-cross-origin"
+    Header unset Server
+    Header unset X-Powered-By
+
+    # Headers de seguridad adicionales
+    Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), payment=(), usb=(), magnetometer=(), gyroscope=(), accelerometer=()"
+
+    # HSTS para HTTPS (solo en producción)
+    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+
+    # Content Security Policy para el sitio web
+    Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://js.stripe.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self' https://api.stripe.com https://*.stripe.com; frame-src https://js.stripe.com https://hooks.stripe.com; media-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;"
+
+    # CORS headers para endpoints PHP (se maneja mejor en config.php)
+    # Header always set Access-Control-Allow-Origin "*"
+    # Header always set Access-Control-Allow-Methods "GET, POST, OPTIONS"
+    # Header always set Access-Control-Allow-Headers "Content-Type, Authorization"
+</IfModule>
+
+# Compresión de archivos
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain text/html text/xml text/css
+    AddOutputFilterByType DEFLATE application/xml application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Cache para recursos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+</IfModule>
+
+# Cache-Control headers adicionales
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+        Header set Cache-Control "public, max-age=31536000, immutable"
+    </FilesMatch>
+</IfModule>
+
+# Redirigir errores 404 a página principal
+ErrorDocument 404 /index.html
+
+# Habilitar rewrite engine
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Redirigir endpoints PHP a la carpeta php/
+    RewriteRule ^contact_secure\.php$ /php/contact_secure.php [L]
+    RewriteRule ^create_payment\.php$ /php/create_payment.php [L]
+    RewriteRule ^confirm_payment\.php$ /php/confirm_payment.php [L]
+    RewriteRule ^webhook\.php$ /php/webhook.php [L]
+    RewriteRule ^verify_payment\.php$ /php/verify_payment.php [L]
+
+    # Prevenir hotlinking básico
+    RewriteCond %{HTTP_REFERER} !^$
+    RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?blindma1den\.com [NC]
+    RewriteCond %{HTTP_REFERER} !^http://localhost [NC]
+    RewriteRule \.(jpg|jpeg|png|gif|webp|svg)$ - [F,L]
+</IfModule>
+
+# Configuraciones finales
+Options -Indexes +FollowSymlinks
+DirectoryIndex index.html

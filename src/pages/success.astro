@@ -1,0 +1,221 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="¡Registro Exitoso! - Blindma1den Hack&Code 2025"
+  description="Tu registro ha sido confirmado exitosamente. Te contactaremos pronto con más detalles."
+  activePage="/success"
+>
+  <section class="pt-32 pb-16 px-4 min-h-screen flex items-center">
+    <div class="max-w-4xl mx-auto text-center">
+      <!-- Success Icon -->
+      <div class="mb-8">
+        <div class="w-32 h-32 mx-auto bg-green-500/20 rounded-full flex items-center justify-center border-4 border-green-400/50">
+          <div class="text-6xl">✅</div>
+        </div>
+      </div>
+
+      <!-- Success Message -->
+      <h1 class="text-5xl font-bold text-white mb-6">
+        ¡Registro Completado!
+      </h1>
+
+      <p class="text-xl text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+        Tu pago ha sido procesado exitosamente y tu lugar en
+        <strong class="text-white">Blindma1den Hack&Code 2025</strong>
+        está confirmado.
+      </p>
+
+      <!-- Registration Info -->
+      <div id="registration-info" class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-green-400/50 mb-8 max-w-2xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-4">Detalles de tu registro</h2>
+
+        <div id="loading-info" class="text-gray-300">
+          <div class="animate-pulse">Verificando información del registro...</div>
+        </div>
+
+        <div id="registration-details" class="hidden text-left space-y-3">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <span class="text-gray-400">Participante:</span>
+              <span id="participant-name" class="text-white font-medium ml-2"></span>
+            </div>
+            <div>
+              <span class="text-gray-400">Email:</span>
+              <span id="participant-email" class="text-white font-medium ml-2"></span>
+            </div>
+            <div>
+              <span class="text-gray-400">Modalidad:</span>
+              <span id="participant-modalidad" class="text-white font-medium ml-2"></span>
+            </div>
+            <div>
+              <span class="text-gray-400">Equipo:</span>
+              <span id="participant-team" class="text-white font-medium ml-2"></span>
+            </div>
+          </div>
+          <div class="mt-6 p-4 bg-green-500/10 rounded-lg border border-green-400/30">
+            <p class="text-green-300 text-sm">
+              <strong>ID de Registro:</strong> <span id="registration-id" class="font-mono"></span>
+            </p>
+          </div>
+        </div>
+
+        <div id="error-info" class="hidden">
+          <div class="text-red-300 p-4 bg-red-500/10 rounded-lg border border-red-400/30">
+            <p><strong>Error:</strong> <span id="error-message"></span></p>
+            <p class="text-sm mt-2">Si el problema persiste, contacta a events@blindma1den.com</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Next Steps -->
+      <div class="bg-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-cyan-400/50 mb-8">
+        <h2 class="text-2xl font-bold text-white mb-4">¿Qué sigue?</h2>
+        <div class="grid md:grid-cols-3 gap-6 text-left">
+          <div class="space-y-2">
+            <div class="text-cyan-400 text-2xl">📧</div>
+            <h3 class="text-white font-semibold">Email de confirmación</h3>
+            <p class="text-gray-300 text-sm">Recibirás un email con todos los detalles del evento</p>
+          </div>
+          <div class="space-y-2">
+            <div class="text-cyan-400 text-2xl">👥</div>
+            <h3 class="text-white font-semibold">Mentoría incluida</h3>
+            <p class="text-gray-300 text-sm">Tendrás acceso a una sesión de mentoría personalizada</p>
+          </div>
+          <div class="space-y-2">
+            <div class="text-cyan-400 text-2xl">🎯</div>
+            <h3 class="text-white font-semibold">Preparación</h3>
+            <p class="text-gray-300 text-sm">Te enviaremos material de preparación antes del evento</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/"
+          class="bg-[#753BE8] hover:bg-purple-700 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg shadow-[#753BE8]/40 hover:shadow-xl hover:shadow-[#753BE8]/60 hover:-translate-y-1"
+        >
+          Volver al inicio
+        </a>
+        <a
+          href="mailto:events@blindma1den.com"
+          class="bg-gray-700 hover:bg-gray-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300 border border-gray-600"
+        >
+          Contactar soporte
+        </a>
+      </div>
+
+      <!-- Social Share -->
+      <div class="mt-12 pt-8 border-t border-gray-700">
+        <p class="text-gray-300 mb-4">¡Comparte tu emoción!</p>
+        <div class="flex justify-center gap-4">
+          <a
+            href="https://twitter.com/intent/tweet?text=¡Acabo de registrarme para Blindma1den Hack%26Code 2025! 🚀&url=https://blindma1den.com"
+            target="_blank"
+            class="text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+          >
+            Twitter
+          </a>
+          <a
+            href="https://www.linkedin.com/sharing/share-offsite/?url=https://blindma1den.com"
+            target="_blank"
+            class="text-cyan-400 hover:text-cyan-300 transition-colors duration-300"
+          >
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', async function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+    const tempId = urlParams.get('temp_id');
+
+    const loadingInfo = document.getElementById('loading-info');
+    const registrationDetails = document.getElementById('registration-details');
+    const errorInfo = document.getElementById('error-info');
+    const errorMessage = document.getElementById('error-message');
+
+    if (!sessionId || !tempId) {
+      showError('Parámetros de confirmación faltantes');
+      return;
+    }
+
+    try {
+      // Verify payment and get registration details
+      const isDevelopment = window.location.hostname === 'localhost';
+      const apiUrl = isDevelopment
+        ? `http://localhost:8080/verify_payment.php?session_id=${sessionId}&temp_id=${tempId}`
+        : `/verify_payment.php?session_id=${sessionId}&temp_id=${tempId}`;
+
+      const response = await fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al confirmar el registro');
+      }
+
+      if (result.success) {
+        // Show registration details
+        const participant = result.participant;
+
+        document.getElementById('participant-name')!.textContent =
+          `${participant.nombre} ${participant.apellido}`;
+        document.getElementById('participant-email')!.textContent = participant.email;
+        document.getElementById('participant-modalidad')!.textContent =
+          participant.modalidad.charAt(0).toUpperCase() + participant.modalidad.slice(1);
+        document.getElementById('participant-team')!.textContent =
+          participant.team_name || 'Individual';
+        document.getElementById('registration-id')!.textContent = result.registration_id;
+
+        // Hide loading, show details
+        loadingInfo.classList.add('hidden');
+        registrationDetails.classList.remove('hidden');
+
+        // Clear localStorage
+        localStorage.removeItem('blindma1den_temp_id');
+        localStorage.removeItem('blindma1den_session_id');
+
+      } else {
+        throw new Error('Error al procesar la confirmación');
+      }
+
+    } catch (error) {
+      console.error('Confirmation error:', error);
+      showError(error.message);
+    }
+
+    function showError(message) {
+      loadingInfo.classList.add('hidden');
+      errorMessage.textContent = message;
+      errorInfo.classList.remove('hidden');
+    }
+  });
+</script>
+
+<style>
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: .5;
+    }
+  }
+</style>
