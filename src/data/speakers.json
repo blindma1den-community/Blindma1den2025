@@ -63,15 +63,6 @@
     "twitter": "guajilodev"
   },
   {
-    "id": 9,
-    "name": "Sheyla Leacock",
-    "title": "Embajadora AWS & Máster en&nbsp;Ciberseguridad",
-    "image": "/images/sheyla.jpeg",
-    "bio": "Licenciada en Desarrollo de Software y Máster en Dirección de Ciberseguridad, Hacking Ético y&nbsp;Seguridad Ofensiva. Embajadora de AWS, líder activa en Women of Security Panamá y embajadora de la Fundación&nbsp;Comunidad&nbsp;DOJO.",
-    "country": "🇵🇦",
-    "twitter": "TechWithSheyla"
-  },
-  {
     "id": 10,
     "name": "Nataya Flores",
     "title": "Técnica Informática & Ingeniera de&nbsp;Datos",
@@ -124,15 +115,6 @@
     "bio": "Apasionado por hacer la ciberseguridad más accesible para todos. Como mentor y formador, ayudo a transformar a los 'ciber padawans' en verdaderos expertos, siempre con el objetivo de construir un mundo digital más seguro. Mi misión es clara: formar cibervengadores que usen sus conocimientos para proteger, no para destruir. Porque en esta galaxia digital, todos podemos ser&nbsp;héroes.",
     "country": "🇪🇸",
     "twitter": "cibercapitan"
-  },
-  {
-    "id": 16,
-    "name": "Jose Manuel Aponte",
-    "title": "English Speaking coach",
-    "image": "/images/astro.jpg",
-    "bio": "¿Quieres hablar inglés fluido? - Necesitas estudiar chunks y yo te los enseño",
-    "country": "🇻🇪",
-    "twitter": "astrojoc"
   },
   {
     "id": 17,
